@@ -1,5 +1,3 @@
-import os
-
 class Config:
     #SQLALCHEMY_DATABASE_URI = os.getenv('postgresql://imagepicapp_user:ZeXYZxkVbbxX7TcmiyyPLMs6EC9HL2NL@dpg-cpo5coo8fa8c73bbo7hg-a.singapore-postgres.render.com/imagepicapp')
     SQLALCHEMY_DATABASE_URI = 'postgresql://imagepicapp_user:ZeXYZxkVbbxX7TcmiyyPLMs6EC9HL2NL@dpg-cpo5coo8fa8c73bbo7hg-a.singapore-postgres.render.com/imagepicapp'

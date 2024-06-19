@@ -2,7 +2,6 @@ from flask import Blueprint, redirect, url_for
 from .extensions import db
 from .models import Photo
 from re import M
-import sqlite3
 from flask import Flask, redirect,render_template,request,g,url_for
 import matplotlib.pyplot as plt
 from PIL import Image
