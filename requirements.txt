@@ -58,7 +58,7 @@ gunicorn==22.0.0
 # Markdown==3.4.1
 # markdown-it-py==2.1.0
 # MarkupSafe==2.1.1
-# matplotlib==3.6.0
+matplotlib==3.6.0
 # mdit-py-plugins==0.3.1
 # mdurl==0.1.2
 # multidict==6.0.2
