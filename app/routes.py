@@ -125,20 +125,23 @@ def index_lost():
 def result_post():
 
     file = request.files['example']
-    file.save(os.path.join('templates/kabegami', file.filename))
+    print('filename=', 'templates/kabegami' + '/' + file.filename)
+    #file.save(os.path.join('templates/kabegami', file.filename))
+    file.save('app/templates/kabegami' + '/' + file.filename)
     name = file.filename
+    print('filename=', name)
 
     # データベースを開く
     #con = get_db()
     data2 = Photo.query.order_by(Photo.id).all()
 
     #cur = con.execute("select MAX(id) AS max_code from Images")
-    data3 = data2[-1]
+    data3 = Photo.query.order_by(Photo.id.desc()).first()
     #cur2 = con.execute("select * from Images order by id")
     #data2 = cur2.fetchall()
     list = []
     for item in data2:
-        list.append(item[2])
+        list.append(item.image_keyword)
     
     list2 = []
     for item in list:
@@ -160,6 +163,7 @@ def result_post():
         new_code = data3.id + 1
     else:
         new_code = 1
+
     # cur.close()
     # sql = "INSERT INTO Images(id, image_path, image_keyword)values({},'{}','_?/keyword/?_')".format(new_code, name)
     # con.execute(sql)
@@ -172,6 +176,7 @@ def result_post():
     # data = cur.fetchall()
     # con.close()
     data = Photo.query.filter_by(id=new_code).all()
+    print('data=', data[0])
     
     return render_template('register.html', data = data, list=new_list)
 
@@ -186,9 +191,9 @@ def register():
     # data = cur.fetchall()
     
     
-    data1 = data[0][0]
+    data1 = data[0].id
     data1_ = int(data1)
-    data2 = data[0][1]
+    data2 = data[0].image_path
     data2_ = str(data2)
    
     new_key = request.form.get("key")
@@ -270,7 +275,7 @@ def open_image(id):
     pic5 = pic4.strip(",")
     pic6 = pic5.strip("'")
     
-    path = "templates/kabegami/{}".format(pic6)
+    path = "app/templates/kabegami/{}".format(pic6)
     
     img = Image.open(path)
     # OS標準の画像ビューアで表示
@@ -302,7 +307,7 @@ def open_image2():
 
     list = []
     for item in data:
-        list.append(item[2])
+        list.append(item.image_keyword)
     
     list2 = []
     for item in list:
@@ -356,9 +361,9 @@ def update_post(id):
     
     data = Photo.query.get(id)
     
-    data1 = data[0][0]
+    data1 = data[0].id
     data1_ = int(data1)
-    data2 = data[0][1]
+    data2 = data[0].image_path
     data2_ = str(data2)
    
     new_key = request.form.get("key_word")

@@ -31,16 +31,16 @@
         <div class="container">
             <div class="card" style="margin: auto;">
             
-                <h2 class="card-title">{{ data[0][1] }}</h2>
+                <h2 class="card-title">{{ data[0].image_path }}</h2>
                 
-                <img class="card-img" src="../kabegami/{{data[0][1]}}">
+                <img class="card-img" src="../kabegami/{{data[0].image_path}}">
                 <div>a</div>
                 <div>a</div>
                 <div>a</div>
                 <div>
-                    <form action="/update/{{ data[0][0] }}" method="POST">
+                    <form action="/update/{{ data[0].id }}" method="POST">
                         <label>new keyword</label>
-                        <input type="text" name="key_word" value="{{ data[0][2] }}">
+                        <input type="text" name="key_word" value="{{ data[0].image_keyword }}">
                         <button type="submit">update</button>
                     </form>
                 </div>
