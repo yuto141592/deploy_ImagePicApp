@@ -77,7 +77,7 @@ def index():
     # con.close()
 
     #data = Image.query.order_by(desc(Image.id)).all()
-    data = Photo.query.all()
+    data = Photo.query.order_by(Photo.id).all()
     # cur = con.execute("select * from Images order by id")
     # data = cur.fetchall()
     # con.close()
@@ -108,7 +108,7 @@ def index_lost():
     # data = cur.fetchall()
     # con.close()
 
-    data = Photo.query.order_by(desc(Photo.id)).all()
+    data = Photo.query.order_by(Photo.id).all()
 
     # cur = con.execute("select * from Images order by id")
     # data = cur.fetchall()
@@ -130,7 +130,7 @@ def result_post():
 
     # データベースを開く
     #con = get_db()
-    data2 = Image.query.order_by(desc(Image.id)).all()
+    data2 = Photo.query.order_by(Photo.id).all()
 
     #cur = con.execute("select MAX(id) AS max_code from Images")
     data3 = data2[-1]
@@ -156,206 +156,233 @@ def result_post():
     #         new_code = row[0] + 1
     #     else:
     #         new_code = 1
-    if data3[0] != None:
-        new_code = data3[0] + 1
+    if data3 != None:
+        new_code = data3.id + 1
     else:
         new_code = 1
     # cur.close()
     # sql = "INSERT INTO Images(id, image_path, image_keyword)values({},'{}','_?/keyword/?_')".format(new_code, name)
     # con.execute(sql)
     # con.commit()
-    db.session.add(Image(id=new_code, image_path=name, image_keyword='_?/keyword/?_'))
+    db.session.add(Photo(id=new_code, image_path=name, image_keyword='_?/keyword/?_'))
     db.session.commit()
 
 
     # cur = con.execute("select * from Images where id = {}".format(new_code))
     # data = cur.fetchall()
     # con.close()
-    data = Image.query.filter(Image.id==new_code).all()
+    data = Photo.query.filter_by(id=new_code).all()
     
     return render_template('register.html', data = data, list=new_list)
 
-# @main.route("/register", methods=["POST"])
-# def register():
+@main.route("/register", methods=["POST"])
+def register():
     
-#     #con = get_db()
-#     data = Image.query.filter(Image.image_keyword.contains('_?/keyword/?_')).all()
-#     #sql3 = "select * from Images where image_keyword LIKE '%_?/keyword/?_%'"
-#     #cur = con.execute("select *  from Images where id = MAX(id)")
-#     # cur = con.execute(sql3)
-#     # data = cur.fetchall()
+    #con = get_db()
+    data = Photo.query.filter(Photo.image_keyword.like('%_?/keyword/?_%')).all()
+    #sql3 = "select * from Images where image_keyword LIKE '%_?/keyword/?_%'"
+    #cur = con.execute("select *  from Images where id = MAX(id)")
+    # cur = con.execute(sql3)
+    # data = cur.fetchall()
     
     
-#     data1 = data[0][0]
-#     data1_ = int(data1)
-#     data2 = data[0][1]
-#     data2_ = str(data2)
+    data1 = data[0][0]
+    data1_ = int(data1)
+    data2 = data[0][1]
+    data2_ = str(data2)
    
-#     new_key = request.form.get("key")
+    new_key = request.form.get("key")
 
-#     # sql2 = "DELETE FROM Images WHERE image_keyword LIKE '%_?/keyword/?_%'"
-#     # con.execute(sql2)
-#     # con.commit()
-#     data = Image.query.filter(Image.image_keyword.contains('_?/keyword/?_')).all()
-#     db.session.delete(data)
-#     db.session.commit()
+    # sql2 = "DELETE FROM Images WHERE image_keyword LIKE '%_?/keyword/?_%'"
+    # con.execute(sql2)
+    # con.commit()
+    delImg = Photo.query.filter(Photo.image_keyword.like('%_?/keyword/?_%')).first()
+    db.session.delete(delImg)
+    db.session.commit()
    
-#     # sql4 = "insert into Images(id, image_path, image_keyword) values({}, '{}', '{}')".format(data1_, data2_, new_key)
-#     # con.execute(sql4)
-#     # con.commit()
-#     # cur = con.execute("select * from Images order by id")
-#     # data = cur.fetchall()
+    # sql4 = "insert into Images(id, image_path, image_keyword) values({}, '{}', '{}')".format(data1_, data2_, new_key)
+    # con.execute(sql4)
+    # con.commit()
+    # cur = con.execute("select * from Images order by id")
+    # data = cur.fetchall()
 
-#     db.session.add(Image(id=data1_, image_path=data2_, image_keyword=new_key))
-#     db.session.commit()
-#     data = Image.query.order_by(desc(Image.id)).all()
+    db.session.add(Photo(id=data1_, image_path=data2_, image_keyword=new_key))
+    db.session.commit()
+    data = Photo.query.order_by(Photo.id).all()
     
-#     #con.close()
+    #con.close()
 
-#     page = request.args.get(get_page_parameter(), type=int, default=1)
-#     res = data[(page - 1)*12: page*12]
-#     pagination = Pagination(page=page, total=len(data),  per_page=12, css_framework='bootstrap4')
-
-
-#     render_template('list_index.html', data = res, pagination=pagination)
-#     return redirect("/lists")
+    page = request.args.get(get_page_parameter(), type=int, default=1)
+    res = data[(page - 1)*12: page*12]
+    pagination = Pagination(page=page, total=len(data),  per_page=12, css_framework='bootstrap4')
 
 
+    render_template('list_index.html', data = res, pagination=pagination)
+    return redirect("/lists")
 
-# @main.route("/delete/<int:id>", methods=["GET"])
-# def delete_post(id):
 
-#     con = get_db()
 
-#     sql2 = "DELETE FROM Images WHERE id = {}".format(id)
-#     con.execute(sql2)
-#     con.commit()
+@main.route("/delete/<int:id>", methods=["GET"])
+def delete_post(id):
 
-#     cur = con.execute("select * from Images order by id")
-#     data = cur.fetchall()
-#     con.close()
-#     page = request.args.get(get_page_parameter(), type=int, default=1)
-#     res = data[(page - 1)*12: page*12]
-#     pagination = Pagination(page=page, total=len(data),  per_page=12, css_framework='bootstrap4')
+    # con = get_db()
 
-#     render_template('list_index.html', data = res, pagination=pagination)
-#     return redirect("/lists")
+    # sql2 = "DELETE FROM Images WHERE id = {}".format(id)
+    # con.execute(sql2)
+    # con.commit()
 
-# @main.route("/open_image/<int:id>")
-# def open_image(id):
-#     con = get_db()
-#     sql = "select image_path from Images where id={}".format(id)
-#     cur = con.execute(sql)
-#     image = cur.fetchall()
-#     con.close()
+    # cur = con.execute("select * from Images order by id")
+    # data = cur.fetchall()
+    # con.close()
 
-#     image2 = str(image)
+    delImg = Photo.query.get(id)
+    db.session.delete(delImg)
+    db.session.commit()
+
+    data = Photo.query.order_by(Photo.id).all()
+
+    page = request.args.get(get_page_parameter(), type=int, default=1)
+    res = data[(page - 1)*12: page*12]
+    pagination = Pagination(page=page, total=len(data),  per_page=12, css_framework='bootstrap4')
+
+    render_template('list_index.html', data = res, pagination=pagination)
+    return redirect("/lists")
+
+@main.route("/open_image/<int:id>")
+def open_image(id):
+    # con = get_db()
+    # sql = "select image_path from Images where id={}".format(id)
+    # cur = con.execute(sql)
+    # image = cur.fetchall()
+    # con.close()
+
+    #image = Photo.query.with_entities(Photo.image_path).get(id)
+    img_id = id 
+    image = Photo.query.filter_by(id=img_id).with_entities(Photo.image_path).scalar()
+
+    image2 = str(image)
     
-#     # PIL.Imageで画像を開く
-#     pic = image2.strip("[")
-#     pic2 = pic.strip("]")
-#     pic3 = pic2.strip("(")
-#     pic4 = pic3.strip(")")
-#     pic5 = pic4.strip(",")
-#     pic6 = pic5.strip("'")
+    # PIL.Imageで画像を開く
+    pic = image2.strip("[")
+    pic2 = pic.strip("]")
+    pic3 = pic2.strip("(")
+    pic4 = pic3.strip(")")
+    pic5 = pic4.strip(",")
+    pic6 = pic5.strip("'")
     
-#     path = "templates/kabegami/{}".format(pic6)
+    path = "templates/kabegami/{}".format(pic6)
     
-#     img = Image.open(path)
-#     # OS標準の画像ビューアで表示
-#     img.show()
+    img = Image.open(path)
+    # OS標準の画像ビューアで表示
+    img.show()
     
-#     return redirect("/")
+    return redirect("/")
 
-# @main.route("/row_image", methods=["POST"])
-# def row_image():
-#     im = request.form["check"]
-#     con = get_db()
-#     cur = con.execute("select * from Images where image_keyword LIKE '%{}%'".format(im))
-#     data = cur.fetchall() 
+@main.route("/row_image", methods=["POST"])
+def row_image():
+    im = request.form["check"]
+    # con = get_db()
+    # cur = con.execute("select * from Images where image_keyword LIKE '%{}%'".format(im))
+    # data = cur.fetchall() 
     
-#     con.close()
-    
-#     return render_template("images.html", data=data)
+    #con.close()
+    data = data = Photo.query.filter(Photo.image_keyword.like('%{}%'.format(im))).all()
 
-# @main.route("/result2")
-# def open_image2():
-#     con = get_db()
+    return render_template("images.html", data=data)
 
-#     cur = con.execute("select * from Images order by id")
-#     data = cur.fetchall()
-#     con.close()
-#     list = []
-#     for item in data:
-#         list.append(item[2])
-    
-#     list2 = []
-#     for item in list:
-#         l = item.split(',')
-#         list2 = list2 + l
-#     list3 = []
-#     for i in list2:
-#         if i not in list3:
-#             list3.append(i)
+@main.route("/result2")
+def open_image2():
+    # con = get_db()
 
-#     new_list = sorted(list3)
+    # cur = con.execute("select * from Images order by id")
+    # data = cur.fetchall()
+    # con.close()
+
+    data = Photo.query.order_by(Photo.id).all()
+
+    list = []
+    for item in data:
+        list.append(item[2])
     
-#     return render_template('index_image.html', data=data, list=new_list)
+    list2 = []
+    for item in list:
+        l = item.split(',')
+        list2 = list2 + l
+    list3 = []
+    for i in list2:
+        if i not in list3:
+            list3.append(i)
+
+    new_list = sorted(list3)
+    
+    return render_template('index_image.html', data=data, list=new_list)
 
     
-# @main.route("/list")
-# def list_open():
-#     con = get_db()
-#     cur = con.execute("select * from Images order by id")
-#     data = cur.fetchall()
-#     con.close()
+@main.route("/list")
+def list_open():
+    # con = get_db()
+    # cur = con.execute("select * from Images order by id")
+    # data = cur.fetchall()
+    # con.close()
 
-#     page = request.args.get(get_page_parameter(), type=int, default=1)
-#     res = data[(page - 1)*12: page*12]
-#     pagination = Pagination(page=page, total=len(data),  per_page=12, css_framework='bootstrap4')
+    data = Photo.query.order_by(Photo.id).all()
 
-#     return render_template('list_index.html', data = res, pagination=pagination)
+    page = request.args.get(get_page_parameter(), type=int, default=1)
+    res = data[(page - 1)*12: page*12]
+    pagination = Pagination(page=page, total=len(data),  per_page=12, css_framework='bootstrap4')
 
-# @main.route("/update/<int:id>")
-# def update(id):
-#     con = get_db()
-#     sql3 = "select * from Images where id = {}".format(id)
+    return render_template('list_index.html', data = res, pagination=pagination)
+
+@main.route("/update/<int:id>")
+def update(id):
+    # con = get_db()
+    # sql3 = "select * from Images where id = {}".format(id)
     
-#     cur = con.execute(sql3)
-#     data = cur.fetchall()
-#     con.close()
+    # cur = con.execute(sql3)
+    # data = cur.fetchall()
+    # con.close()
+
+    data = Photo.query.get(id)
     
-#     return render_template('update.html', data = data)
-    
-    
-# @main.route("/update/<int:id>", methods=["POST"])
-# def update_post(id):
-#     con = get_db()
-#     sql3 = "select * from Images where id = {}".format(id)
-#     cur = con.execute(sql3)
-#     data = cur.fetchall()
+    return render_template('update.html', data = data)
     
     
-#     data1 = data[0][0]
-#     data1_ = int(data1)
-#     data2 = data[0][1]
-#     data2_ = str(data2)
+@main.route("/update/<int:id>", methods=["POST"])
+def update_post(id):
+    # con = get_db()
+    # sql3 = "select * from Images where id = {}".format(id)
+    # cur = con.execute(sql3)
+    # data = cur.fetchall()
+    
+    data = Photo.query.get(id)
+    
+    data1 = data[0][0]
+    data1_ = int(data1)
+    data2 = data[0][1]
+    data2_ = str(data2)
    
-#     new_key = request.form.get("key_word")
+    new_key = request.form.get("key_word")
 
-#     sql2 = "DELETE FROM Images WHERE id = {}".format(id)
-#     con.execute(sql2)
-#     con.commit()
+    # sql2 = "DELETE FROM Images WHERE id = {}".format(id)
+    # con.execute(sql2)
+    # con.commit()
+    db.session.delete(data)
+    db.session.commit()
+
    
-#     sql4 = "insert into Images(id, image_path, image_keyword) values({}, '{}', '{}')".format(data1_, data2_, new_key)
-#     con.execute(sql4)
-#     con.commit()
-#     cur = con.execute("select * from Images order by id")
-#     data = cur.fetchall()
+    # sql4 = "insert into Images(id, image_path, image_keyword) values({}, '{}', '{}')".format(data1_, data2_, new_key)
+    # con.execute(sql4)
+    # con.commit()
+    # cur = con.execute("select * from Images order by id")
+    # data = cur.fetchall()
     
-#     con.close()
+    # con.close()
+    new_img = Photo(id=data1_, image_path=data2_, image_keyword=new_key)
+    db.session.add(new_img)
+    db.session.commit()
+
     
-#     return redirect("/list")
+    return redirect("/list")
 
 @main.route("/about_index")
 def about():
