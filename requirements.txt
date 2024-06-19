@@ -62,7 +62,7 @@ matplotlib==3.6.0
 # mdit-py-plugins==0.3.1
 # mdurl==0.1.2
 # multidict==6.0.2
-# numpy==1.23.3
+numpy==1.23.3
 # oauthlib==3.2.1
 # opencv-python==4.7.0.72
 # opt-einsum==3.3.0
