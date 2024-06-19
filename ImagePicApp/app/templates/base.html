@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <style>
+        .content nav {
+            background-color: #ffffff;
+            padding: 10px;
+            z-index: 9999;
+        }
+
+        .page-item.active .page-link {
+            color: #212529;
+            border-color: #f2f2f2;
+            background-color: #f2f2f2;
+        }
+
+        .pagination {
+            list-style-type: none;
+            display: flex;
+            align-items: center;
+            margin: 0 0 3px 0;
+        }
+
+        .pagination li {
+            margin: 0 5px;
+        }
+
+        .pagination li.active a {
+            font-weight: bold;
+        }
+
+        .pagination li a {
+            text-decoration: none;
+            color: #000;
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .pagination li a:hover {
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            object-fit: cover;
+            margin: 0 auto;
+        }
+
+        .container div {
+            width: 400px;
+            height: 500px;
+            margin: 1px;
+            padding: 10px;
+        }
+
+        .container2 {
+            margin: 0 auto;
+        }
+
+        .con {
+            width: 800px;
+            height: 5600px;
+            margin: 0 auto;
+            padding: 10px;
+            background-color: rgba(228, 236, 242, 0.5);
+        }
+
+        .card-img {
+            position: absolute;
+            width: 95%;
+            height: 70%;
+            object-fit: cover;
+        }
+
+        .thum_box {
+            display: flex;
+            flex-wrap: wrap;
+            object-fit: cover;
+        }
+
+        .thum_box div {
+            width: 380px;
+            height: 110px;
+            margin: 15px;
+            padding: 10px;
+        }
+
+        .box_size {
+            width: 100%;
+        }
+
+        ul {
+            display: flex;
+            justify-content: center;
+        }
+
+        li {
+            list-style: none;
+            margin: 2px;
+        }
+
+        body {
+            background-image: url("kabegami/background3.png");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        header {
+            width: 100%;
+            padding: 15px 0;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        header .headline{
+            font-size: 32px;
+        }
+
+        .nav-list {
+            text-align: center;
+            padding: 10px 0;
+            margin: 0 auto;
+        }
+
+        .nav-list-item {
+            list-style: none;
+            display: inline-block;
+            margin: 0 20px;
+        }
+
+        footer {
+            width: 100%;
+            height: 240px; 
+            text-align: center;
+            padding: 50px 0;
+            margin: 10px;
+            background-color: #c6dbff;
+        }
+        
+        .footer-text {
+            color: #fff;
+        }
+
+        .btn-a-6{
+            display: block;
+            text-decoration: none;
+            max-width: 300px;
+            width: 100%;
+            margin: 10px;
+            padding: 8px 15px;
+            color: #608aac;
+            font-weight: bold;
+            font-size: 10px;
+            text-align: center;
+            background-color: #b6ceff;
+            border-radius: 5px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+
+        .btn-a-6:hover{
+            background-color: #e7f7ff;
+        }
+
+        .btn-a-7{
+            display: block;
+            text-decoration: none;
+            max-width: 300px;
+            width: 100%;
+            margin: 10px;
+            padding: 8px 15px;
+            color: #ac6180;
+            font-weight: bold;
+            font-size: 10px;
+            text-align: center;
+            background-color: #ffb7c9;
+            border-radius: 5px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+
+        .btn-a-7:hover{
+            background-color: #ffe7e7;
+        }
+
+        .btn-a-8{
+            display: block;
+            text-decoration: none;
+            max-width: 300px;
+            width: 100%;
+            margin: 10px;
+            padding: 8px 15px;
+            color: #509d67;
+            font-weight: bold;
+            font-size: 10px;
+            text-align: center;
+            background-color: #beffce;
+            border-radius: 5px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+
+        .btn-a-8:hover{
+            background-color: #e7ffe7;
+        }
+
+        .btn-a-9{
+            display: block;
+            text-decoration: none;
+            max-width: 300px;
+            width: 100%;
+            margin: 0px;
+            padding: 25px 20px;
+            color: #3d3d3d;
+            font-weight: bold;
+            font-size: 13px;
+            text-align: center;
+            background-color: #fafafa;
+            border-radius: 0px;
+            box-shadow: 0 0px 0px rgba(0,0,0,0.1);
+        }
+
+        .btn-a-9:hover{
+            background-color: #f7f9d8;
+        }
+
+        .btn-a-10{
+            display: block;
+            text-decoration: none;
+            max-width: 300px;
+            width: 100%;
+            margin: 0px;
+            padding: 25px 20px;
+            color: #3d3d3d;
+            font-weight: bold;
+            font-size: 13px;
+            text-align: center;
+            background-color: #fafafa;
+            border-radius: 0px;
+            box-shadow: 0 0px 0px rgba(0,0,0,0.1);
+        }
+
+        .btn-a-10:hover{
+            background-color: #deedf9;
+        }
+
+        .btn-a-11{
+            display: block;
+            text-decoration: none;
+            max-width: 300px;
+            width: 100%;
+            margin: 0px;
+            padding: 25px 20px;
+            color: #3d3d3d;
+            font-weight: bold;
+            font-size: 13px;
+            text-align: center;
+            background-color: #fafafa;
+            border-radius: 0px;
+            box-shadow: 0 0px 0px rgba(0,0,0,0.1);
+        }
+
+        .btn-a-11:hover{
+            background-color: #fbdfeb;
+        }
+
+        .btn-a-12{
+            display: block;
+            text-decoration: none;
+            max-width: 300px;
+            width: 100%;
+            margin: 0px;
+            padding: 25px 20px;
+            color: #3d3d3d;
+            font-weight: bold;
+            font-size: 13px;
+            text-align: center;
+            background-color: #fafafa;
+            border-radius: 0px;
+            box-shadow: 0 0px 0px rgba(0,0,0,0.1);
+        }
+
+        .btn-a-12:hover{
+            background-color: #dff9e3;
+        }
+      
+        .list {
+            column-count: 2;
+        }
+
+        .list2 {
+            column-count: 3;
+        }
+
+        ol {
+            margin-bottom: 2em;
+            line-height: 1.7;
+        }
+
+    </style>
+    {% block head %}{% endblock %}
+</head>
+
+<body>
+    {% block body %}{% endblock %}
+</body>
+
+</html>

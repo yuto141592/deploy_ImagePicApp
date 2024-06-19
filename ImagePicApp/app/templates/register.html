@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block body %}
+<nav class="navbar navbar-light bg-light p-3">
+    <a class="navbar-brand" href="/" style="front-size: 2rem;">ImagePicApp</a>
+    <ul class="nav-list" style="margin: 0px;">
+        <li class="nav-list-item">
+          <a class="btn-a-9" href="/" role="button">Gallery</a>
+        </li>
+        <li class="nav-list-item">
+          <a class="btn-a-11" href="/about_index" role="button">
+              About
+          </a>
+        </li>
+        <li class="nav-list-item">
+          <a class="btn-a-10" href="/result2" role="button">Key words</a>
+        </li>
+        <li>
+          <a class="btn-a-12" href="#example" role="button">Register</a>
+        </li>
+      </ul>
+</nav>
+<!-- header -->
+<header>
+    <h1 class="headline">
+      <h1>Register KeyWord</h1>
+    </h1>
+</header>
+<tbody>
+    <div> 
+        <div class="container" style="margin: auto;">
+            <form action='/register'>
+                
+                <div class="card" style="margin: 10px;">
+
+                    <img class="card-img" src="kabegami/{{data[0][1]}}">
+  
+                    <div class="description" style="margin: 1px;">
+                        <p>{{data[0][1]}}</p>
+                    </div>
+                    <p>{{data[0][1]}}</p>
+                
+                </div>
+
+                <br>
+
+                <label>
+                    key_word    
+                    <input type="text" name="key" placeholder="key1,key2,key3,...">
+                </label>
+              
+                <button type="submit" formmethod="POST">register</button>
+            </form>
+            <br>
+            <div class="card w-50 mb-3" style="margin: auto;">
+                <h2>Key words</h2>
+                <div class="card-body">
+                    <tbody>
+                        <ol class="list2">
+                            {% for item in list %}
+                            <li>
+                                <label>{{item}}</label>
+                            </li>
+                            {% endfor %}
+                        </ol>
+                        
+                    </tbody>    
+
+                </div>
+            </div>
+           
+        </div>
+    </div>
+    
+</tbody>
+<!-- footer -->
+<footer>
+    <div class="thum_box">
+            
+        <div id="example" class="card" style="margin: auto;">
+            <h2>Register Keyword</h2>
+            <form action="{{url_for('result_post')}}" method="POST" enctype="multipart/form-data">
+                <input type="file" name="example" accept="image/*"><input type="submit" value="upload">
+            </form>
+            <br>
+        </div>
+        <div class="card" style="margin: auto;">
+            <h2>Pic up image</h2>
+            <table>
+                <a class="btn-a-6"  href="/result2" role="button">choose keyword</a>
+            </table>
+        </div>
+    </div>
+</footer>
+{% endblock %}

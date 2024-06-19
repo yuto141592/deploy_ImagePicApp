@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block body %}
+<nav class="navbar navbar-light bg-light p-3">
+    <a class="navbar-brand" href="/" style="front-size: 2rem;">ImagePicApp</a>
+    <ul class="nav-list" style="margin: 0px;">
+        <li class="nav-list-item">
+          <a class="btn-a-9" role="button">Gallery</a>
+        </li>
+        <li class="nav-list-item">
+          <a class="btn-a-11" href="/about_index" role="button">
+              About
+          </a>
+        </li>
+        <li class="nav-list-item">
+          <a class="btn-a-10" href="/result2" role="button">Key words</a>
+        </li>
+        <li>
+          <a class="btn-a-12" href="#example" role="button">Register</a>
+        </li>
+      </ul>
+</nav>
+<!-- header -->
+<header>
+    <h1 class="headline">
+      <h1>GALLERY</h1>
+    </h1>
+</header>
+
+<tbody>
+    {{ pagination.links }}
+    <div class="flexbox">
+        
+
+        <div class="container">
+            {% for item in data %}
+            
+                <div class="card" style="margin: 10px;">
+
+                    <img class="card-img" src="kabegami/{{item.image_path}}">
+  
+                    <div class="description" style="margin: 1px;">
+                        <p>{{item[1]}}</p>
+                    </div>
+                    <p>{{item[1]}}</p>
+                    <p style="margin: 1px;">key : {{item[2]}}</p>
+
+                    <ul style="margin: 1px;">
+                        <li>
+                            <a class="btn-a-8"  href="/update/{{item.id}}" role="button">Update</a>
+                        </li>
+                        <li>
+                            <a class="btn-a-6"  href="/open_image/{{item.id}}" role="button">Open</a>
+                        </li>
+                        <li>
+                            <a class="btn-a-7"  href="/delete/{{item.id}}" role="button">Delete</a>
+                        </li>
+                    </ul>
+                
+                </div>
+           
+            {% endfor %}
+        </div>
+       
+    </div>
+
+    
+</tbody>
+<br>
+{{ pagination.links }}
+<br>
+<!-- footer -->
+<footer>
+    <div class="thum_box">
+            
+        <div id="example" class="card" style="margin: auto;">
+            <h2>Register Keyword</h2>
+            <!-- <form action="{{url_for('main.result_post')}}" method="POST" enctype="multipart/form-data">
+                <input type="file" name="example" accept="image/*"><input type="submit" value="upload">
+            </form> -->
+            <br>
+        </div>
+        <div class="card" style="margin: auto;">
+            <h2>Pic up image</h2>
+            <!-- <table>
+                <a class="btn-a-6"  href="/result2" role="button">choose keyword</a>
+            </table> -->
+        </div>
+    </div>
+</footer>
+{% endblock %}
