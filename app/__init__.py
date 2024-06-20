@@ -29,6 +29,22 @@ def create_app():
     #     'storageBucket': 'imagepicapp.appspot.com'
     # })
 
+    firebase_sdk_str = os.getenv('FIRE_BASE_SDK')
+    print(f"Using Firebase SDK file: {firebase_sdk_str}")
+    with open(firebase_sdk_str) as f:
+        firebaseConfig = json.loads(f.read())
+    firebase = pyrebase.initialize_app(firebaseConfig)
+    print(f"Loaded Firebase config: {firebaseConfig}")
+    
+    firebase_config_str = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
+    firebase_config = json.loads(firebase_config_str)
+    cred = credentials.Certificate(firebase_config)
+    firebase_admin.initialize_app(cred, {
+        'storageBucket': 'imagepicapp.appspot.com'
+    })
+    # firebase = pyrebase.initialize_app(cred)
+    aut = firebase.auth()
+
     login_manager = LoginManager()
     login_manager.init_app(app)
     login_manager.login_view = 'login'
