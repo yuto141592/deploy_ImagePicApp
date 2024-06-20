@@ -23,10 +23,12 @@ main = Blueprint('main', __name__)
 
 
 firebase_sdk_str = os.getenv('FIRE_BASE_SDK')
+firebase_config = json.loads(firebase_sdk_str)
 
-with open(firebase_sdk_str) as f:
-    firebaseConfig = json.loads(f.read())
-firebase = pyrebase.initialize_app(firebaseConfig)
+with open("firebase_config.json", "w") as json_file:
+    json.dump(firebase_config, json_file)
+cred = credentials.Certificate("firebase_config.json")
+firebase = pyrebase.initialize_app(cred)
 aut = firebase.auth()
 
 # with open(firebase_sdk_str) as f:
