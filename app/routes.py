@@ -17,6 +17,7 @@ from firebase import firebase
 import json
 from datetime import timedelta
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required
+from .app import aut
 
 
 main = Blueprint('main', __name__)
