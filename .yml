@@ -1,0 +1,15 @@
+- name: create-json
+  id: create-json-1
+  uses: jsdaniell/create-json@v1.2.2
+  with:
+    name: "serviceAccountKey.json"
+    json: ${{ secrets.SERVICEACCOUNTKEY_JSON }}
+
+- name: create-json
+  id: create-json-2
+  uses: jsdaniell/create-json@v1.2.2
+  with:
+    name: "fireBaseSDK.json"
+    json: ${{ secrets.FIREBASESDK_JSON }}
+
+
