@@ -34,11 +34,18 @@ with open("fireBaseSDK.json") as f:
 firebase = pyrebase.initialize_app(firebaseConfig)
 aut = firebase.auth()
 
-cred = credentials.Certificate('serviceAccountKey.json')
+# cred = credentials.Certificate('serviceAccountKey.json')
+# firebase_admin.initialize_app(cred, {
+#     'storageBucket': 'imagepicapp.appspot.com'
+# })
+
+firebase_config_str = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
+
+firebase_config = json.loads(firebase_config_str)
+cred = credentials.Certificate(firebase_config)
 firebase_admin.initialize_app(cred, {
     'storageBucket': 'imagepicapp.appspot.com'
 })
-
 
 
 # def get_db():
