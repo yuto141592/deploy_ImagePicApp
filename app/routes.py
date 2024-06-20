@@ -20,24 +20,12 @@ from flask_login import LoginManager, UserMixin, login_user, logout_user, login_
 
 
 main = Blueprint('main', __name__)
-# firebase = pyrebase.initialize_app(ConfigApp)
-# auth = firebase.auth()
-# storage = firebase.storage()
+firebase_sdk_str = os.getenv('FIRE_BASE_SDK')
 
-# cred = credentials.Certificate('serviceAccountKey.json')
-# firebase_admin.initialize_app(cred)
-
-# firebase = pyrebase.initialize_app(cred)
-# auth = firebase.auth()
-with open("fireBaseSDK.json") as f:
+with open(firebase_sdk_str) as f:
     firebaseConfig = json.loads(f.read())
 firebase = pyrebase.initialize_app(firebaseConfig)
 aut = firebase.auth()
-
-# cred = credentials.Certificate('serviceAccountKey.json')
-# firebase_admin.initialize_app(cred, {
-#     'storageBucket': 'imagepicapp.appspot.com'
-# })
 
 firebase_config_str = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
 
