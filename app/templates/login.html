@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block body %}
+<nav class="navbar navbar-light bg-light p-3">
+    <a class="navbar-brand" style="front-size: 2rem;">ImagePicApp</a>
+    <ul class="nav-list" style="margin: 0px;">
+        <li class="nav-list-item">
+          <a class="btn-a-9" role="button">Gallery</a>
+        </li>
+        <li class="nav-list-item">
+          <a class="btn-a-11" href="https://yuto141592.github.io/about_ImagePicApp/" role="button">
+              About
+          </a>
+        </li>
+        <li class="nav-list-item">
+          <a class="btn-a-10" role="button">Key words</a>
+        </li>
+        <li>
+          <a class="btn-a-12" href="#example" role="button">Register</a>
+        </li>
+        <li>
+            <a class="btn-a-13" href="/signup" role="button">Signup</a>
+        </li>
+      </ul>
+</nav>
+<!-- header -->
+<header>
+    <h1 class="headline">
+      <h1>Login</h1>
+    </h1>
+</header>
+<tbody>
+    <form method="POST" action="{{ url_for('main.login') }}">
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="submit" value="Login">
+    </form>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul>
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+</tbody>
+
+{% endblock %}
+
+
