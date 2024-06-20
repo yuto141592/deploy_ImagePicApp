@@ -8,7 +8,7 @@ from flask_paginate import Pagination, get_page_parameter
 import os
 from flask import Flask
 from .extensions import db
-
+from .routes import main
 from .models import User
 from config import Config
 import psycopg2
@@ -18,7 +18,7 @@ import firebase_admin
 from firebase_admin import credentials
 
 def create_app():
-    from .routes import main
+   
     app = Flask(__name__, static_folder="./templates/kabegami")
     app.config.from_object(Config)
     # cred = credentials.Certificate('serviceAccountKey.json')
