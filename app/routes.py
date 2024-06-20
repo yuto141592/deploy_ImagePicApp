@@ -23,6 +23,7 @@ main = Blueprint('main', __name__)
 
 
 firebase_sdk_str = os.getenv('FIRE_BASE_SDK')
+print(f"Using Firebase SDK file: {firebase_sdk_str}")
 # with open(firebase_sdk_str) as f:
 #     firebaseConfig = json.loads(f.read())
 # firebase = pyrebase.initialize_app(firebaseConfig)
