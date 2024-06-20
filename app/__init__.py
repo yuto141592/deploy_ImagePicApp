@@ -9,14 +9,38 @@ import os
 from flask import Flask
 from .extensions import db
 from .routes import main
+from .models import User
 from config import Config
 import psycopg2
-
-
+from firebase_admin import credentials, initialize_app
+from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required
+import firebase_admin
+from firebase_admin import credentials
 
 def create_app():
+    
     app = Flask(__name__, static_folder="./templates/kabegami")
     app.config.from_object(Config)
+    # cred = credentials.Certificate('serviceAccountKey.json')
+    # initialize_app(cred)
+
+    # cred = credentials.Certificate('serviceAccountKey.json')
+    # firebase_admin.initialize_app(cred, {
+    #     'storageBucket': 'imagepicapp.appspot.com'
+    # })
+
+    login_manager = LoginManager()
+    login_manager.init_app(app)
+    login_manager.login_view = 'login'
+
+
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User.query.get(user_id)
+
+    def localize_callback(*args, **kwarg):
+        return 'このページにアクセスするには、ログインが必要です'
+    login_manager.localize_callback = localize_callback
 
 
     db.init_app(app)
