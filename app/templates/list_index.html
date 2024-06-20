@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block body %}
+
 <nav class="navbar navbar-light bg-light p-3">
     <a class="navbar-brand" href="/" style="front-size: 2rem;">ImagePicApp</a>
     <ul class="nav-list" style="margin: 0px;">
@@ -17,6 +18,9 @@
         </li>
         <li>
           <a class="btn-a-12" href="#example" role="button">Register</a>
+        </li>
+        <li>
+            <a class="btn-a-13" href="/logout" role="button">Logout</a>
         </li>
       </ul>
 </nav>
@@ -37,23 +41,23 @@
             
                 <div class="card" style="margin: 10px;">
 
-                    <img class="card-img" src="kabegami/{{item.image_path}}">
+                    <img class="card-img" src="{{item[0]}}">
   
                     <div class="description" style="margin: 1px;">
                         <p>{{item.image_path}}</p>
                     </div>
-                    <p>{{item.image_path}}</p>
-                    <p style="margin: 1px;">key : {{item.image_keyword}}</p>
+                    <p>{{item[1]}}</p>
+                    <p style="margin: 1px;">key : {{item[2]}}</p>
 
                     <ul style="margin: 1px;">
                         <li>
-                            <a class="btn-a-8"  href="/update/{{item.id}}" role="button">Update</a>
+                            <a class="btn-a-8"  href="/update/{{item[3]}}" role="button">Update</a>
                         </li>
                         <li>
-                            <a class="btn-a-6"  href="/open_image/{{item.id}}" role="button">Open</a>
+                            <a class="btn-a-6"  href="/open_image/{{item[3]}}" role="button">Open</a>
                         </li>
                         <li>
-                            <a class="btn-a-7"  href="/delete/{{item.id}}" role="button">Delete</a>
+                            <a class="btn-a-7"  href="/delete/{{item[3]}}" role="button">Delete</a>
                         </li>
                     </ul>
                 
