@@ -330,7 +330,8 @@ def list_open():
 @main.route("/update/<int:id>")
 @login_required
 def update(id):
-    data = Images.query.filter(Images.user_id==session['user']).get(id)
+    data = Images.query.filter_by(user_id=session['user'], id=id).first()
+
 
     new_data = []
     for d in data:
@@ -348,7 +349,8 @@ def update(id):
 @login_required
 def update_post(id):
 
-    data = Images.query.filter(Images.user_id==session['user']).get(id)
+    data = Images.query.filter_by(user_id=session['user'], id=id).first()
+
     
     data1 = data[0].id
     data1_ = int(data1)
