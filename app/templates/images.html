@@ -36,19 +36,19 @@
             <div class="card" style="margin: auto;">
                
             
-                <img class="card-img" src="kabegami/{{item.image_path}}">
+                <img class="card-img" src="{{item[0]}}">
                 
                 <div class="discription"><p>a</p></div>
-                <p>{{item.id}}</p>
+                <p>{{item[0]}}</p>
                 <ul>
                     <li>
-                        <a class="btn-a-8"  href="/update/{{item.id}}" role="button">Update</a>
+                        <a class="btn-a-8"  href="/update/{{item[3]}}" role="button">Update</a>
                     </li>
                     <li>
-                        <a class="btn-a-6"  href="/open_image/{{item.id}}" role="button">Open</a>
+                        <a class="btn-a-6"  href="/open_image/{{item[3]}}" role="button">Open</a>
                     </li>
                     <li>
-                        <a class="btn-a-7"  href="/delete/{{item.id}}" role="button">Delete</a>
+                        <a class="btn-a-7"  href="/delete/{{item[3]}}" role="button">Delete</a>
                     </li>
                 </ul>
                 

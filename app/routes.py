@@ -262,14 +262,30 @@ def row_image():
     im = request.form["check"]
 
     data = Images.query.filter(Images.user_id==session['user']).filter(Images.image_keyword.like('%{}%'.format(im))).all()
+    new_data = []
+    for d in data:
+        d_path = d.image_path
+        bucket = storage.bucket()
+        blob = bucket.blob(d_path)
+        file_url = blob.generate_signed_url(timedelta(minutes=15))
+        new_l = [file_url, d.image_name, d.image_keyword, d.id]
+        new_data.append(new_l)
 
-    return render_template("images.html", data=data)
+    return render_template("images.html", data=new_data)
 
 @main.route("/result2")
 @login_required
 def open_image2():
 
     data = Images.query.filter(Images.user_id==session['user']).order_by(Images.id).all()
+    new_data = []
+    for d in data:
+        d_path = d.image_path
+        bucket = storage.bucket()
+        blob = bucket.blob(d_path)
+        file_url = blob.generate_signed_url(timedelta(minutes=15))
+        new_l = [file_url, d.image_name, d.image_keyword, d.id]
+        new_data.append(new_l)
 
     list = []
     for item in data:
@@ -286,7 +302,7 @@ def open_image2():
 
     new_list = sorted(list3)
     
-    return render_template('index_image.html', data=data, list=new_list)
+    return render_template('index_image.html', data=new_data, list=new_list)
 
     
 @main.route("/list")
@@ -296,9 +312,18 @@ def list_open():
 
     data = Images.query.filter(Images.user_id==session['user']).order_by(Images.id).all()
 
+    new_data = []
+    for d in data:
+        d_path = d.image_path
+        bucket = storage.bucket()
+        blob = bucket.blob(d_path)
+        file_url = blob.generate_signed_url(timedelta(minutes=15))
+        new_l = [file_url, d.image_name, d.image_keyword, d.id]
+        new_data.append(new_l)
+
     page = request.args.get(get_page_parameter(), type=int, default=1)
-    res = data[(page - 1)*12: page*12]
-    pagination = Pagination(page=page, total=len(data),  per_page=12, css_framework='bootstrap4')
+    res = new_data[(page - 1)*12: page*12]
+    pagination = Pagination(page=page, total=len(new_data),  per_page=12, css_framework='bootstrap4')
 
     return render_template('list_index.html', data = res, pagination=pagination)
 
@@ -306,8 +331,17 @@ def list_open():
 @login_required
 def update(id):
     data = Images.query.filter(Images.user_id==session['user']).get(id)
+
+    new_data = []
+    for d in data:
+        d_path = d.image_path
+        bucket = storage.bucket()
+        blob = bucket.blob(d_path)
+        file_url = blob.generate_signed_url(timedelta(minutes=15))
+        new_l = [file_url, d.image_name, d.image_keyword, d.id]
+        new_data.append(new_l)
     
-    return render_template('update.html', data = data)
+    return render_template('update.html', data = new_data)
     
     
 @main.route("/update/<int:id>", methods=["POST"])
