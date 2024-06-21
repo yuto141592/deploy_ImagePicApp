@@ -5,6 +5,5 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     #SECRET_KEY = os.getenv('8e9066bc94cf595ec3fdb445190128e6')
     SECRET_KEY = '8e9066bc94cf595ec3fdb445190128e6'
-    FIREBASE_CREDENTIALS = "serviceAccountKey.json"
     FIREBASE_CONFIG = "fireBaseSDK.json"
 
