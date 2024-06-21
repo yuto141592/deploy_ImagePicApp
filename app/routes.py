@@ -334,13 +334,13 @@ def update(id):
 
 
     new_data = []
-    for d in data:
-        d_path = d.image_path
-        bucket = storage.bucket()
-        blob = bucket.blob(d_path)
-        file_url = blob.generate_signed_url(timedelta(minutes=15))
-        new_l = [file_url, d.image_name, d.image_keyword, d.id]
-        new_data.append(new_l)
+
+    d_path = data.image_path
+    bucket = storage.bucket()
+    blob = bucket.blob(d_path)
+    file_url = blob.generate_signed_url(timedelta(minutes=15))
+    new_l = [file_url, data.image_name, data.image_keyword, data.id]
+    new_data.append(new_l)
     
     return render_template('update.html', data = new_data)
     
