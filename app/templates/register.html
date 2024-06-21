@@ -36,7 +36,7 @@
                 
                 <div class="card" style="margin: 10px;">
 
-                    <img class="card-img" src="{{data[0]}}">
+                    <img class="card-img" src="{{data[0]}}" alt="Image" onclick="openPopup('{{data[0]}}')">
   
                     <!-- <div class="description" style="margin: 1px;">
                         <p>{{data.image_name}}</p>
@@ -77,6 +77,24 @@
             </div>
            
         </div>
+        <div id="popup" class="popup">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <img class="popup-content" id="popup-img">
+        </div>
+
+        <script>
+            function openPopup(src) {
+                var popup = document.getElementById("popup");
+                var popupImg = document.getElementById("popup-img");
+                popup.style.display = "block";
+                popupImg.src = src;
+            }
+        
+            function closePopup() {
+                var popup = document.getElementById("popup");
+                popup.style.display = "none";
+            }
+        </script>
     </div>
     
 </tbody>

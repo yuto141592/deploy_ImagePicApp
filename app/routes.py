@@ -76,7 +76,8 @@ def login_f():
 @main.route('/lists')
 @login_required
 def index_lost():
-
+    if 'user' not in session:
+        return redirect(url_for('main.login'))
 
     data = Images.query.filter(Images.user_id==session['user']).order_by(Images.id).all()
 
@@ -157,7 +158,8 @@ def result_post():
 @main.route("/register", methods=["POST"])
 @login_required
 def register():
-    
+    if 'user' not in session:
+        return redirect(url_for('main.login'))
 
     data = Images.query.filter(Images.user_id==session['user']).filter(Images.image_keyword.like('%_?/keyword/?_%')).all()
  
@@ -201,7 +203,8 @@ def register():
 @main.route("/delete/<int:id>", methods=["GET"])
 @login_required
 def delete_post(id):
-
+    if 'user' not in session:
+        return redirect(url_for('main.login'))
 
     file_path = Images.query.filter(Images.user_id==session['user']).filter(Images.id==id).first()
     delPath = file_path.image_path
@@ -231,34 +234,12 @@ def delete_post(id):
     render_template('list_index.html', data = res, pagination=pagination)
     return redirect("/lists")
 
-@main.route("/open_image/<int:id>")
-@login_required
-def open_image(id):
-
-    img_id = id 
-    image = Images.query.filter(Images.id==img_id, user_id=session['user']).with_entities(Images.image_path).scalar()
-
-    image2 = str(image)
-    
-    # PIL.Imageで画像を開く
-    pic = image2.strip("[")
-    pic2 = pic.strip("]")
-    pic3 = pic2.strip("(")
-    pic4 = pic3.strip(")")
-    pic5 = pic4.strip(",")
-    pic6 = pic5.strip("'")
-    
-    path = "app/templates/kabegami/{}".format(pic6)
-    
-    img = Image.open(path)
-    # OS標準の画像ビューアで表示
-    img.show()
-    
-    return redirect("/lists")
-
 @main.route("/row_image", methods=["POST"])
 @login_required
 def row_image():
+    if 'user' not in session:
+        return redirect(url_for('main.login'))
+    
     im = request.form["check"]
 
     data = Images.query.filter(Images.user_id==session['user']).filter(Images.image_keyword.like('%{}%'.format(im))).all()
@@ -276,6 +257,8 @@ def row_image():
 @main.route("/result2")
 @login_required
 def open_image2():
+    if 'user' not in session:
+        return redirect(url_for('main.login'))
 
     data = Images.query.filter(Images.user_id==session['user']).order_by(Images.id).all()
     new_data = []
@@ -308,7 +291,8 @@ def open_image2():
 @main.route("/list")
 @login_required
 def list_open():
-
+    if 'user' not in session:
+        return redirect(url_for('main.login'))
 
     data = Images.query.filter(Images.user_id==session['user']).order_by(Images.id).all()
 
@@ -330,6 +314,9 @@ def list_open():
 @main.route("/update/<int:id>")
 @login_required
 def update(id):
+    if 'user' not in session:
+        return redirect(url_for('main.login'))
+    
     data = Images.query.filter_by(user_id=session['user'], id=id).first()
 
 
@@ -348,6 +335,8 @@ def update(id):
 @main.route("/update/<int:id>", methods=["POST"])
 @login_required
 def update_post(id):
+    if 'user' not in session:
+        return redirect(url_for('main.login'))
 
     data = Images.query.filter_by(user_id=session['user'], id=id).first()
 
@@ -439,63 +428,11 @@ def login():
 @main.route('/logout')
 @login_required
 def logout():
+    if 'user' not in session:
+        return redirect(url_for('main.login'))
+    
     session.pop('user', None)
     logout_user()
     return redirect(url_for('main.login'))
 
-@main.route('/upload')
-@login_required
-def upload_form():
-    if 'user' not in session:
-        return redirect(url_for('main.index_lost'))
-    return '''
-    <!doctype html>
-    <html lang="en">
-      <head>
-        <meta charset="utf-8">
-        <title>Upload Image</title>
-      </head>
-      <body>
-        <h1>Upload Image</h1>
-        <form method="POST" enctype="multipart/form-data" action="/upload_file">
-          <input type="file" name="file">
-          <input type="submit" value="Upload">
-        </form>
-      </body>
-    </html>
-    '''
-
-@main.route('/upload_file', methods=['POST'])
-@login_required
-def upload_file():
-    if 'user' not in session:
-        return redirect(url_for('main.login'))
-    
-    if request.method == 'POST':
-        file = request.files['file']
-        if file:
-            filename = secure_filename(file.filename)
-            file_path = 'app/templates/kabegami' + '/' + file.filename
-            file.save(file_path)
-            
-            # Firebase Storageにファイルをアップロード
-            bucket = storage.bucket()
-            blob = bucket.blob(f"{session['user']}/{filename}")
-            blob.upload_from_filename(file_path)
-            
-            # ファイルを削除
-            os.remove(file_path)
-
-            # blob.make_public()  # ファイルを公開
-            file_url = blob.generate_signed_url(timedelta(minutes=15))  # URLの有効期限を15分に設定
-            
-            flash('File successfully uploaded', 'success')
-            return redirect(url_for('main.dashboard', file_url=file_url))
-    
-@main.route('/dashboard')
-@login_required
-def dashboard():
-    file_url = request.args.get('file_url')
-    return render_template('dashboard.html', file_url=file_url)
-    
    
