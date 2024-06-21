@@ -352,9 +352,9 @@ def update_post(id):
     data = Images.query.filter_by(user_id=session['user'], id=id).first()
 
     
-    data1 = data[0].id
+    data1 = data.id
     data1_ = int(data1)
-    data2 = data[0].image_path
+    data2 = data.image_path
     data2_ = str(data2)
    
     new_key = request.form.get("key_word")
