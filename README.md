@@ -1,10 +1,12 @@
 # ImagePicApp
-VSCodeで実行する場合はお手数ですが、[<>Code ▼ → Download ZIP] よりZIPファイルをダウンロードしていただき、VSCodeで File>Open Folder... からImagePicApp-mainを開いてImagePicApp.pyファイルの実行をお願いいたします。'http://localhost:5000/' のリンクに飛ぶとImagePicAppをご利用いただけます。
+
+https://imagepicapp.onrender.com
+接続に時間がかかることがあります。
+signupからメールアドレス（架空で構いません）とパスワード（半角英数6字以上）を登録してログインをお願いいたします。
+詳細な使い方はaboutをご参照ください。
 <p></p>
 <br>
-途中ではありますがアプリの公開にも挑戦しています。
-<br>
-https://imagepicapp.onrender.com/
+VSCodeで実行する場合はお手数ですが、[<>Code ▼ → Download ZIP] よりZIPファイルをダウンロードしていただき、VSCodeで File>Open Folder... からImagePicApp-mainを開いてImagePicApp.pyファイルの実行をお願いいたします。'http://localhost:5000/' のリンクに飛ぶとImagePicAppをご利用いただけます。
 <p></p>
 <br>
 ImagePicAppの説明がされているページです。
