@@ -25,9 +25,13 @@ main = Blueprint('main', __name__)
 
 # firebase_sdk_str = os.getenv('FIRE_BASE_SDK')
 
-with open("fireBaseSDK.json") as f:
-    firebaseConfig = json.loads(f.read())
-firebase = pyrebase.initialize_app(firebaseConfig)
+# with open("fireBaseSDK.json") as f:
+#     firebaseConfig = json.loads(f.read())
+# firebase = pyrebase.initialize_app(firebaseConfig)
+
+firebase_sdk_str = os.getenv('FIRE_BASE_SDK')
+firebase_sdk = json.loads(firebase_sdk_str)
+firebase = pyrebase.initialize_app(firebase_sdk)
 
 
 firebase_config_str = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
