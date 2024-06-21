@@ -41,21 +41,22 @@
             
                 <div class="card" style="margin: 10px;">
 
-                    <img class="card-img" src="{{item[0]}}">
-  
+                    <img class="card-img" src="{{item[0]}}" alt="Image" style="width:380px; height:380px; cursor:pointer" onclick="openPopup('{{item[0]}}')">
+                    
+                    <p style="margin: 1px;">key : {{item[1]}}</p>
                     <div class="description" style="margin: 1px;">
                         <p>{{item[1]}}</p>
                     </div>
                     
-                    <p style="margin: 1px;">key : {{item[2]}}</p>
+                    <p style="margin: 1px;">key : {{item[1]}}</p>
 
                     <ul style="margin: 1px;">
                         <li>
                             <a class="btn-a-8"  href="/update/{{item[3]}}" role="button">Update</a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a class="btn-a-6"  href="/open_image/{{item[3]}}" role="button">Open</a>
-                        </li>
+                        </li> -->
                         <li>
                             <a class="btn-a-7"  href="/delete/{{item[3]}}" role="button">Delete</a>
                         </li>
@@ -65,6 +66,24 @@
            
             {% endfor %}
         </div>
+        <div id="popup" class="popup">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <img class="popup-content" id="popup-img">
+        </div>
+
+        <script>
+            function openPopup(src) {
+                var popup = document.getElementById("popup");
+                var popupImg = document.getElementById("popup-img");
+                popup.style.display = "block";
+                popupImg.src = src;
+            }
+        
+            function closePopup() {
+                var popup = document.getElementById("popup");
+                popup.style.display = "none";
+            }
+        </script>
        
     </div>
 

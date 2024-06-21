@@ -33,7 +33,7 @@
             
                 <h2 class="card-title">{{ data[0][1] }}</h2>
                 
-                <img class="card-img" src="{{data[0][0]}}">
+                <img class="card-img" src="{{data[0][0]}}" alt="Image" style="width:380px; height:380px; cursor:pointer" onclick="openPopup('{{item[0]}}')">
                 <div>a</div>
                 <div>a</div>
                 <div>a</div>
@@ -47,10 +47,28 @@
                 <br>
             </div>
         </div>
+        <div id="popup" class="popup">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <img class="popup-content" id="popup-img">
+        </div>
+
+        <script>
+            function openPopup(src) {
+                var popup = document.getElementById("popup");
+                var popupImg = document.getElementById("popup-img");
+                popup.style.display = "block";
+                popupImg.src = src;
+            }
+        
+            function closePopup() {
+                var popup = document.getElementById("popup");
+                popup.style.display = "none";
+            }
+        </script>
     </div>
    
-   
-    <a href="/lists" role="button">Back to TopPage</a>
+<!--    
+    <a href="/lists" role="button">Back to TopPage</a> -->
 </tbody>
 <!-- footer -->
 <footer>

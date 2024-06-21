@@ -36,7 +36,7 @@
             <div class="card" style="margin: auto;">
                
             
-                <img class="card-img" src="{{item[0]}}">
+                <img class="card-img" src="{{item[0]}}" alt="Image" style="width:380px; height:380px; cursor:pointer" onclick="openPopup('{{item[0]}}')">
                 
                 <div class="discription"><p>a</p></div>
                 <p>{{item[1]}}</p>
@@ -44,9 +44,9 @@
                     <li>
                         <a class="btn-a-8"  href="/update/{{item[3]}}" role="button">Update</a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a class="btn-a-6"  href="/open_image/{{item[3]}}" role="button">Open</a>
-                    </li>
+                    </li> -->
                     <li>
                         <a class="btn-a-7"  href="/delete/{{item[3]}}" role="button">Delete</a>
                     </li>
@@ -57,7 +57,25 @@
         
             {% endfor %}
         </div>
-        <a href="/lists" role="button">Back to TopPage</a>
+        <div id="popup" class="popup">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <img class="popup-content" id="popup-img">
+        </div>
+
+        <script>
+            function openPopup(src) {
+                var popup = document.getElementById("popup");
+                var popupImg = document.getElementById("popup-img");
+                popup.style.display = "block";
+                popupImg.src = src;
+            }
+        
+            function closePopup() {
+                var popup = document.getElementById("popup");
+                popup.style.display = "none";
+            }
+        </script>
+        <!-- <a href="/lists" role="button">Back to TopPage</a> -->
     </div>
 </tbody>
 <!-- footer -->
