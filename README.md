@@ -7,9 +7,9 @@ signupからメールアドレス（架空で構いません）とパスワー�
 詳細な使い方はaboutをご参照ください。
 <p></p>
 <br>
-VSCodeで実行する場合はお手数ですが、[<>Code ▼ → Download ZIP] よりZIPファイルをダウンロードしていただき、VSCodeで File>Open Folder... からImagePicApp-mainを開いてImagePicApp.pyファイルの実行をお願いいたします。'http://localhost:5000/' のリンクに飛ぶとImagePicAppをご利用いただけます。
+<!-- VSCodeで実行する場合はお手数ですが、[<>Code ▼ → Download ZIP] よりZIPファイルをダウンロードしていただき、VSCodeで File>Open Folder... からImagePicApp-mainを開いてImagePicApp.pyファイルの実行をお願いいたします。'http://localhost:5000/' のリンクに飛ぶとImagePicAppをご利用いただけます。
 <p></p>
-<br>
+<br> -->
 ImagePicAppの説明がされているページです。
 <br>
 https://yuto141592.github.io/about_ImagePicApp/
