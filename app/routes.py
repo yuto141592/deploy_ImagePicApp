@@ -75,7 +75,7 @@ def login_f():
     elif request.DEVICE == 'tablet':
         return render_template('tablet_login.html')
     else:
-        return render_template('index.login.html')
+        return render_template('login.html')
 
 
 
