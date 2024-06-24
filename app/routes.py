@@ -338,13 +338,15 @@ def update_post(id):
     data1_ = int(data1)
     data2 = data.image_path
     data2_ = str(data2)
+    data3 = data.image_name
+    data3_ = str(data3)
    
     new_key = request.form.get("key_word")
 
     db.session.delete(data)
     db.session.commit()
 
-    new_img = Images(id=data1_, user_id=session['user'], image_path=data2_, image_keyword=new_key)
+    new_img = Images(id=data1_, user_id=session['user'], image_name=data3_, image_path=data2_, image_keyword=new_key)
     db.session.add(new_img)
     db.session.commit()
 
