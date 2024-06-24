@@ -74,7 +74,6 @@ def login_f():
 
 
 @main.route('/lists')
-@login_required
 def index_lost():
     if 'user' not in session:
         return redirect(url_for('main.login'))
@@ -98,7 +97,6 @@ def index_lost():
     return render_template('list_index.html', data = res, pagination=pagination)
 
 @main.route('/result', methods=["GET", "POST"])
-@login_required
 def result_post():
     if 'user' not in session:
         return redirect(url_for('main.login'))
@@ -108,7 +106,7 @@ def result_post():
         file_path = 'app/templates/kabegami' + '/' + file.filename
 
         file.save(file_path)
-        name = f"{session['user']}/{file.filename}"
+        #name = f"{session['user']}/{file.filename}"
 
  
         data2 = Images.query.filter(Images.user_id==session['user']).order_by(Images.id).all()
@@ -133,12 +131,14 @@ def result_post():
             new_code = data3.id + 1
         else:
             new_code = 1
+        
+        name = f"{session['user']}/{file.filename + str(new_code)}"
 
         db.session.add(Images(id=new_code, user_id=session['user'], image_path=name, image_keyword='_?/keyword/?_'))
         db.session.commit()    
 
         bucket = storage.bucket()
-        blob = bucket.blob(f"{session['user']}/{file.filename}")
+        blob = bucket.blob(f"{session['user']}/{file.filename + str(new_code)}")
         blob.upload_from_filename(file_path)
 
         os.remove(file_path)
@@ -156,7 +156,6 @@ def result_post():
         return render_template('register.html', data = new_l, list=new_list)
 
 @main.route("/register", methods=["POST"])
-@login_required
 def register():
     if 'user' not in session:
         return redirect(url_for('main.login'))
@@ -201,7 +200,6 @@ def register():
 
 
 @main.route("/delete/<int:id>", methods=["GET"])
-@login_required
 def delete_post(id):
     if 'user' not in session:
         return redirect(url_for('main.login'))
@@ -235,7 +233,6 @@ def delete_post(id):
     return redirect("/lists")
 
 @main.route("/row_image", methods=["POST"])
-@login_required
 def row_image():
     if 'user' not in session:
         return redirect(url_for('main.login'))
@@ -255,7 +252,6 @@ def row_image():
     return render_template("images.html", data=new_data)
 
 @main.route("/result2")
-@login_required
 def open_image2():
     if 'user' not in session:
         return redirect(url_for('main.login'))
@@ -289,7 +285,6 @@ def open_image2():
 
     
 @main.route("/list")
-@login_required
 def list_open():
     if 'user' not in session:
         return redirect(url_for('main.login'))
@@ -312,7 +307,6 @@ def list_open():
     return render_template('list_index.html', data = res, pagination=pagination)
 
 @main.route("/update/<int:id>")
-@login_required
 def update(id):
     if 'user' not in session:
         return redirect(url_for('main.login'))
@@ -333,7 +327,6 @@ def update(id):
     
     
 @main.route("/update/<int:id>", methods=["POST"])
-@login_required
 def update_post(id):
     if 'user' not in session:
         return redirect(url_for('main.login'))
@@ -426,7 +419,6 @@ def login():
 
 
 @main.route('/logout')
-@login_required
 def logout():
     if 'user' not in session:
         return redirect(url_for('main.login'))
