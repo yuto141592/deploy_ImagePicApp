@@ -3,24 +3,26 @@
 {% block body %}
 
 <nav class="navbar navbar-light bg-light p-3">
-    <a class="navbar-brand" href="/" style="front-size: 2rem;">ImagePicApp</a>
-    <ul class="nav-list" style="margin: 0px;">
-        <li class="nav-list-item">
-          <a class="btn-a-9" role="button">Gallery</a>
+    <a class="navbar-brand" style="front-size: 2rem;">ImagePicApp</a>
+    <input type="checkbox" class="menu-btn" id="menu-btn">
+    <label for="menu-btn" class="menu-icon"><span class="navicon"></span></label>
+    <ul class="menu ml-auto">
+        <li class="top">
+          <a role="button">Gallery</a>
         </li>
-        <li class="nav-list-item">
-          <a class="btn-a-11" href="/about_index" role="button">
+        <li>
+          <a  href="/about_index" role="button">
               About
           </a>
         </li>
-        <li class="nav-list-item">
-          <a class="btn-a-10" href="/result2" role="button">Key words</a>
+        <li>
+          <a href="/result2" role="button">Key words</a>
         </li>
         <li>
-          <a class="btn-a-12" href="#example" role="button">Register</a>
+          <a href="#example" role="button">Register</a>
         </li>
         <li>
-            <a class="btn-a-13" href="/logout" role="button">Logout</a>
+            <a href="/logout" role="button">Logout</a>
         </li>
       </ul>
 </nav>

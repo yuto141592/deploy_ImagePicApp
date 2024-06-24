@@ -1,27 +1,43 @@
 {% extends "base.html" %}
 
 {% block body %}
+<!-- <header class="header">
+  <div class="navtext-container">
+    <div class="navtext">company</div>
+  </div>
+  <input type="checkbox" class="menu-btn" id="menu-btn">
+  <label for="menu-btn" class="menu-icon"><span class="navicon"></span></label>
+  <ul class="menu">
+    <li class="top"><a href="#home">home</a></li>
+    <li><a href="#skills">skills</a></li>
+    <li><a href="#projects">projects</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul> -->
+
+</header>
 <nav class="navbar navbar-light bg-light p-3">
     <a class="navbar-brand" style="front-size: 2rem;">ImagePicApp</a>
-    <ul class="nav-list" style="margin: 0px;">
-        <li class="nav-list-item">
-          <a class="btn-a-9" role="button">Gallery</a>
+    <input type="checkbox" class="menu-btn" id="menu-btn">
+    <label for="menu-btn" class="menu-icon"><span class="navicon"></span></label>
+    <ul class="menu ml-auto">
+        <li class="top">
+          <a role="button">Gallery</a>
         </li>
-        <li class="nav-list-item">
-          <a class="btn-a-11" href="https://yuto141592.github.io/about_ImagePicApp/" role="button">
+        <li>
+          <a href="https://yuto141592.github.io/about_ImagePicApp/" role="button">
               About
           </a>
         </li>
-        <li class="nav-list-item">
-          <a class="btn-a-10" role="button">Key words</a>
+        <li>
+          <a role="button">Key words</a>
         </li>
         <li>
-          <a class="btn-a-12" href="#example" role="button">Register</a>
+          <a href="#example" role="button">Register</a>
         </li>
         <li>
-            <a class="btn-a-13" href="/signup" role="button">Signup</a>
+            <a href="/signup" role="button">Signup</a>
         </li>
-      </ul>
+    </ul>
 </nav>
 <!-- header -->
 <header>
