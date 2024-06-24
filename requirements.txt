@@ -1,5 +1,6 @@
 
 Flask==2.2.2
+Flask-Devices==0.0.1
 Flask-Login==0.6.3
 Flask-Migrate==3.1.0
 flask-paginate==2023.10.24

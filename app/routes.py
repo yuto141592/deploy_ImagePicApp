@@ -14,7 +14,7 @@ from firebase import firebase
 import json
 from datetime import timedelta
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required
-
+import flask_devices
 
 
 main = Blueprint('main', __name__)
@@ -70,7 +70,13 @@ def login_f():
         else:
             flash('入力されたユーザーは存在しません')
 
-    return render_template('login.html')
+    if request.DEVICE == 'mobile':
+        return render_template('mobile_login.html')
+    elif request.DEVICE == 'tablet':
+        return render_template('tablet_login.html')
+    else:
+        return render_template('index.login.html')
+
 
 
 @main.route('/lists')
@@ -94,7 +100,13 @@ def index_lost():
     pagination = Pagination(page=page, total=len(data),  per_page=12, css_framework='bootstrap4')
     
 
-    return render_template('list_index.html', data = res, pagination=pagination)
+    if request.DEVICE == 'mobile':
+        return render_template('mobile_list_index.html', data = res, pagination=pagination)
+    elif request.DEVICE == 'tablet':
+        return render_template('tablet_list_index.html', data = res, pagination=pagination)
+    else:
+        return render_template('list_index.html', data = res, pagination=pagination)
+
 
 @main.route('/result', methods=["GET", "POST"])
 def result_post():
@@ -153,7 +165,13 @@ def result_post():
         file_url = blob.generate_signed_url(timedelta(minutes=15))
         new_l = [file_url, new_data.id]
         
+    if request.DEVICE == 'mobile':
+        return render_template('mobile_register.html', data = new_l, list=new_list)
+    elif request.DEVICE == 'tablet':
+        return render_template('tablet_register.html', data = new_l, list=new_list)
+    else:
         return render_template('register.html', data = new_l, list=new_list)
+
 
 @main.route("/register", methods=["POST"])
 def register():
@@ -194,7 +212,13 @@ def register():
     pagination = Pagination(page=page, total=len(new_data),  per_page=12, css_framework='bootstrap4')
 
 
-    render_template('list_index.html', data = res, pagination=pagination)
+    if request.DEVICE == 'mobile':
+        render_template('mobile_list_index.html', data = res, pagination=pagination)
+    elif request.DEVICE == 'tablet':
+        render_template('tablet_list_index.html', data = res, pagination=pagination)
+    else:
+        render_template('list_index.html', data = res, pagination=pagination)
+    
     return redirect("/lists")
 
 
@@ -229,7 +253,13 @@ def delete_post(id):
     res = new_data[(page - 1)*12: page*12]
     pagination = Pagination(page=page, total=len(new_data),  per_page=12, css_framework='bootstrap4')
 
-    render_template('list_index.html', data = res, pagination=pagination)
+    if request.DEVICE == 'mobile':
+        render_template('mobile_list_index.html', data = res, pagination=pagination)
+    elif request.DEVICE == 'tablet':
+        render_template('tablet_list_index.html', data = res, pagination=pagination)
+    else:
+        render_template('list_index.html', data = res, pagination=pagination)
+
     return redirect("/lists")
 
 @main.route("/row_image", methods=["POST"])
@@ -249,7 +279,12 @@ def row_image():
         new_l = [file_url, d.image_name, d.image_keyword, d.id]
         new_data.append(new_l)
 
-    return render_template("images.html", data=new_data)
+    if request.DEVICE == 'mobile':
+        return render_template("mobile_images.html", data=data)
+    elif request.DEVICE == 'tablet':
+        return render_template("tablet_images.html", data=data)
+    else:
+        return render_template("images.html", data=data)
 
 @main.route("/result2")
 def open_image2():
@@ -281,7 +316,13 @@ def open_image2():
 
     new_list = sorted(list3)
     
-    return render_template('index_image.html', data=new_data, list=new_list)
+    if request.DEVICE == 'mobile':
+        return render_template('mobile_index_image.html', data=data, list=new_list)
+    elif request.DEVICE == 'tablet':
+        return render_template('tablet_index_image.html', data=data, list=new_list)
+    else:
+        return render_template('index_image.html', data=data, list=new_list)
+    
 
     
 @main.route("/list")
@@ -304,7 +345,13 @@ def list_open():
     res = new_data[(page - 1)*12: page*12]
     pagination = Pagination(page=page, total=len(new_data),  per_page=12, css_framework='bootstrap4')
 
-    return render_template('list_index.html', data = res, pagination=pagination)
+    if request.DEVICE == 'mobile':
+        return render_template('mobile_list_index.html', data = res, pagination=pagination)
+    elif request.DEVICE == 'tablet':
+        return render_template('tablet_list_index.html', data = res, pagination=pagination)
+    else:
+        return render_template('list_index.html', data = res, pagination=pagination)
+
 
 @main.route("/update/<int:id>")
 def update(id):
@@ -323,7 +370,13 @@ def update(id):
     new_l = [file_url, data.image_name, data.image_keyword, data.id]
     new_data.append(new_l)
     
-    return render_template('update.html', data = new_data)
+    if request.DEVICE == 'mobile':
+        return render_template('mobile_update.html', data = data)
+    elif request.DEVICE == 'tablet':
+        return render_template('tablet_update.html', data = data)
+    else:
+        return render_template('update.html', data = data)
+ 
     
     
 @main.route("/update/<int:id>", methods=["POST"])
@@ -355,7 +408,12 @@ def update_post(id):
 
 @main.route("/about_index")
 def about():
-    return render_template('about_index.html')
+    if request.DEVICE == 'mobile':
+        return render_template('mobile_about_index.html')
+    elif request.DEVICE == 'tablet':
+        return render_template('tablet_about_index.html')
+    else:
+        return render_template('about_index.html')
 
 @main.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -378,9 +436,13 @@ def signup():
         else:
             flash('すでにサインアップされています')
     
-
-    return render_template('signup.html')
-
+    if request.DEVICE == 'mobile':
+        return render_template('mobile_signup.html')
+    elif request.DEVICE == 'tablet':
+        return render_template('tablet_signup.html')
+    else:
+        return render_template('signup.html')
+    
 @main.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -417,7 +479,12 @@ def login():
         else:
             flash('入力されたユーザーは存在しません')
 
-    return render_template('login.html')
+    if request.DEVICE == 'mobile':
+        return render_template('mobile_login.html')
+    elif request.DEVICE == 'tablet':
+        return render_template('tablet_login.html')
+    else:
+        return render_template('login.html')
 
 
 @main.route('/logout')

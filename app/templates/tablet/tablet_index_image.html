@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block body %}
+<nav class="navbar navbar-light bg-light p-3">
+    <a class="navbar-brand" href="/" style="front-size: 2rem;">ImagePicApp</a>
+    <ul class="nav-list" style="margin: 0px;">
+        <li class="nav-list-item">
+          <a class="btn-a-9" href="/lists" role="button">Gallery</a>
+        </li>
+        <li class="nav-list-item">
+          <a class="btn-a-11" href="/about_index" role="button">
+              About
+          </a>
+        </li>
+        <li class="nav-list-item">
+          <a class="btn-a-10" role="button">Key words</a>
+        </li>
+        <li>
+          <a class="btn-a-12" href="#example" role="button">Register</a>
+        </li>
+        <li>
+            <a class="btn-a-13" href="/logout" role="button">Logout</a>
+        </li>
+      </ul>
+</nav>
+<!-- header -->
+<header>
+    <h1 class="headline">
+      <h1>Choose KeyWord</h1>
+    </h1>
+</header>
+<form action='/row_image'>
+    
+    <div class="card w-50 mb-3" style="margin: auto;">
+        <div class="card-body">
+            <tbody>
+                <ol class="list">
+                    {% for item in list %}
+                    <li>
+                        <input type="checkbox"  name="check" value="{{item}}">
+                        <label>{{item}}</label>
+                    </li>
+                    {% endfor %}
+                </ol>
+                
+            </tbody>    
+            <br>
+            <button type="submit" formmethod="POST">Go</button>
+            <br>
+            <a href="/" role="button">Back to TopPage</a>
+        </div>
+    </div>
+    
+</form>
+<!-- footer -->
+<footer>
+    <div class="thum_box">
+            
+        <div id="example" class="card" style="margin: auto;">
+            <h2>Register Keyword</h2>
+            <form action="{{url_for('main.result_post')}}" method="POST" enctype="multipart/form-data">
+                <input type="file" name="example" accept="image/*"><input type="submit" value="upload">
+            </form>
+            <br>
+        </div>
+        <div class="card" style="margin: auto;">
+            <h2>Pic up image</h2>
+            <table>
+                <a class="btn-a-6"  href="/result2" role="button">choose keyword</a>
+            </table>
+        </div>
+    </div>
+</footer>
+{% endblock %}

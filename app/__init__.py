@@ -12,11 +12,17 @@ from config import Config
 from firebase_admin import credentials, initialize_app
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required
 from firebase_admin import credentials
+import flask_devices
 
 def create_app():
    
     app = Flask(__name__, static_folder="./templates/kabegami")
     app.config.from_object(Config)
+
+    devices = flask_devices.Devices(app)
+    devices.add_pattern('mobile', 'iPhone|iPod|Android.*Mobile|Windows.*Phone|dream|blackberry|CUPCAKE|webOS|incognito|webmate', 'app/templates/mobile')
+    devices.add_pattern('tablet', 'iPad|Android', 'app/templates/tablet')
+    devices.add_pattern('pc', '.*', 'app/templates')
 
     login_manager = LoginManager()
     login_manager.init_app(app)

@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block body %}
+<nav class="navbar navbar-light bg-light p-3">
+    <a class="navbar-brand" style="front-size: 2rem;">ImagePicApp</a>
+    <ul class="nav-list" style="margin: 0px;">
+        <li class="nav-list-item">
+          <a class="btn-a-9" role="button">Gallery</a>
+        </li>
+        <li class="nav-list-item">
+          <a class="btn-a-11" href="https://yuto141592.github.io/about_ImagePicApp/" role="button">
+              About
+          </a>
+        </li>
+        <li class="nav-list-item">
+          <a class="btn-a-10" role="button">Key words</a>
+        </li>
+        <li>
+          <a class="btn-a-12" href="#example" role="button">Register</a>
+        </li>
+        <li>
+            <a class="btn-a-13" href="/login" role="button">Login</a>
+        </li>
+      </ul>
+</nav>
+<!-- header -->
+<header>
+    <h1 class="headline">
+      <h1>Signup</h1>
+    </h1>
+</header>
+<tbody>
+  <div class="con2">
+    <form class="login-form" method="POST" action="{{ url_for('main.signup') }}">
+      <p class="login-text">
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-lock fa-stack-1x"></i>
+        </span>
+      </p>
+      <input type="email" name="email" class="login-username" autofocus="true" required="true" placeholder="Email" />
+      <input type="password" name="password" class="login-password" required="true" placeholder="Password" />
+      <input type="submit" value="Sign Up" class="login-submit" />
+    </form>
+  </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul>
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+</tbody>
+
+{% endblock %}
+
+
+
