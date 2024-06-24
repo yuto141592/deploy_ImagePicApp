@@ -30,11 +30,20 @@
     </h1>
 </header>
 <tbody>
-    <form method="POST" action="{{ url_for('main.login') }}">
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <input type="submit" value="Login">
+  <div class="con2">
+    <form class="login-form" method="POST" action="{{ url_for('main.login') }}">
+      <p class="login-text">
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-lock fa-stack-1x"></i>
+        </span>
+      </p>
+      <input type="email" name="email" class="login-username" autofocus="true" required="true" placeholder="Email" />
+      <input type="password" name="password" class="login-password" required="true" placeholder="Password" />
+      <input type="submit" value="Login" class="login-submit" />
     </form>
+  </div>
+
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             <ul>
