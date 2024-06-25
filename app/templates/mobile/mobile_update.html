@@ -8,10 +8,10 @@
     <label for="menu-btn" class="menu-icon"><span class="navicon"></span></label>
     <ul class="menu ml-auto">
         <li class="top">
-          <a role="button">Gallery</a>
+          <a href="/" role="button">Gallery</a>
         </li>
         <li>
-          <a  href="/about_index" role="button">
+          <a href="/about_index" role="button">
               About
           </a>
         </li>
@@ -29,40 +29,40 @@
 <!-- header -->
 <header>
     <h1 class="headline">
-      <h1>GALLERY</h1>
+      <h1>Update Keyword</h1>
     </h1>
 </header>
-
 <tbody>
-
     <div class="flexbox">
-        
-
         <div class="container">
-            
-                <div class="card" style="margin: 10px; background-color: rgba(228, 236, 242, 0.2); box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.08), 0 5px 5px 0 rgba(0, 0, 0, 0.1);">
+            <div class="card" style="margin: 10px; background-color: rgba(228, 236, 242, 0.2); box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.08), 0 5px 5px 0 rgba(0, 0, 0, 0.1);">
 
-                    <img class="card-img" src="{{data[0][0]}}" alt="Image" onclick="openPopup('{{data[0][0]}}')">
-  
-                    <div class="description" style="margin: 1px;">
-                        <p></p>
-                    </div>
-                    <p>{{data[0][1]}}</p>
-                    <p style="margin: 1px;"> {{data[0][2]}}</p>
+                <img class="card-img" src="{{data[0][0]}}" alt="Image" onclick="openPopup('{{data[0][0]}}')">
 
-                    <ul style="margin: 1px;">
-                        <li>
-                            <a class="btn-a-8"  href="/update/{{data[0][3]}}" role="button">Update</a>
-                        </li>
-                        <!-- <li>
-                            <a class="btn-a-6"  href="/open_image/{{data[0][3]}}" role="button">Open</a>
-                        </li> -->
-                        <li>
-                            <a class="btn-a-7"  href="/delete/{{data[0][3]}}" role="button">Delete</a>
-                        </li>
-                    </ul>
-                
+                <div class="description" style="margin: 1px;">
+                    <p></p>
                 </div>
+                <p>{{data[0][1]}}</p>
+                <p style="margin: 1px;">{{data[0][1]}}</p>
+
+                <ul style="margin: 1px;">
+                    <li>
+                        <a></a>
+                    </li>
+                    <li>
+                            <form action="/update/{{ data[0][3] }}" method="POST">
+                                <label>new keyword</label>
+                                <input type="text" name="key_word" value="{{ data[0][2] }}">
+                                <button type="submit">update</button>
+                            </form>
+                    </li>
+                    <li>
+                        <a></a>
+                    </li>
+                </ul>
+            </div>
+            
+                
         </div>
         <div id="popup" class="popup">
             <span class="close" onclick="closePopup()">&times;</span>
@@ -84,10 +84,7 @@
         </script>
     </div>
 
-
-    
 </tbody>
-<br>
 <!-- footer -->
 <footer>
     <div class="thum_box">
