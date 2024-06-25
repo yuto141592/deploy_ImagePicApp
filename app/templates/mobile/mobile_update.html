@@ -32,6 +32,7 @@
 </header>
 <tbody>
     <div class="flexbox">
+        <div class="container">
             <div class="card" style="margin: auto; background-color: rgba(228, 236, 242, 0.2); box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.08), 0 5px 5px 0 rgba(0, 0, 0, 0.1);">
             
                 <h2 class="card-title">{{ data[0][1] }}</h2>
@@ -49,6 +50,25 @@
                 </div>
                 <br>
             </div>
+        </div>
+        <div id="popup" class="popup">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <img class="popup-content" id="popup-img">
+        </div>
+
+        <script>
+            function openPopup(src) {
+                var popup = document.getElementById("popup");
+                var popupImg = document.getElementById("popup-img");
+                popup.style.display = "block";
+                popupImg.src = src;
+            }
+        
+            function closePopup() {
+                var popup = document.getElementById("popup");
+                popup.style.display = "none";
+            }
+        </script>
     </div>
    
    
