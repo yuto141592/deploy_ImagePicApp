@@ -280,11 +280,11 @@ def row_image():
         new_data.append(new_l)
 
     if request.DEVICE == 'mobile':
-        return render_template("mobile_images.html", data=data)
+        return render_template("mobile_images.html", data=new_data)
     elif request.DEVICE == 'tablet':
-        return render_template("tablet_images.html", data=data)
+        return render_template("tablet_images.html", data=new_data)
     else:
-        return render_template("images.html", data=data)
+        return render_template("images.html", data=new_data)
 
 @main.route("/result2")
 def open_image2():
@@ -371,11 +371,11 @@ def update(id):
     new_data.append(new_l)
     
     if request.DEVICE == 'mobile':
-        return render_template('mobile_update.html', data = data)
+        return render_template('mobile_update.html', data = new_data)
     elif request.DEVICE == 'tablet':
-        return render_template('tablet_update.html', data = data)
+        return render_template('tablet_update.html', data = new_data)
     else:
-        return render_template('update.html', data = data)
+        return render_template('update.html', data = new_data)
  
     
     
