@@ -1,0 +1,222 @@
+{% extends "mobile_base.html" %}
+
+{% block body %}
+
+<nav class="navbar navbar-light bg-light p-3">
+    <a class="navbar{% extends "mobile_base.html" %}
+
+    {% block body %}
+    
+    <nav class="navbar navbar-light bg-light p-3">
+        <a class="navbar-brand" style="front-size: 2rem;">ImagePicApp</a>
+        <input type="checkbox" class="menu-btn" id="menu-btn">
+        <label for="menu-btn" class="menu-icon"><span class="navicon"></span></label>
+        <ul class="menu ml-auto">
+            <li class="top">
+              <a role="button">Gallery</a>
+            </li>
+            <li>
+              <a  href="/about_index" role="button">
+                  About
+              </a>
+            </li>
+            <li>
+              <a href="/result2" role="button">Key words</a>
+            </li>
+            <li>
+              <a href="#example" role="button">Register</a>
+            </li>
+            <li>
+                <a href="/logout" role="button">Logout</a>
+            </li>
+          </ul>
+    </nav>
+    <!-- header -->
+    <header>
+        <h1 class="headline">
+          <h1>GALLERY</h1>
+        </h1>
+    </header>
+    
+    <tbody>
+        {{ pagination.links }}
+        <div class="flexbox">
+            
+    
+            <div class="container">
+                {% for item in data %}
+                
+                    <div class="card" style="margin: 10px; background-color: rgba(228, 236, 242, 0.2); box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.08), 0 5px 5px 0 rgba(0, 0, 0, 0.1);">
+    
+                        <img class="card-img" src="{{item[0]}}" alt="Image" onclick="openPopup('{{item[0]}}')">
+      
+                        <div class="description" style="margin: 1px;">
+                            <p></p>
+                        </div>
+                        <p>{{item[1]}}</p>
+                        <p style="margin: 1px;"> {{item[2]}}</p>
+    
+                        <ul style="margin: 1px;">
+                            <li>
+                                <a class="btn-a-8"  href="/update/{{item[3]}}" role="button">Update</a>
+                            </li>
+                            <!-- <li>
+                                <a class="btn-a-6"  href="/open_image/{{item[3]}}" role="button">Open</a>
+                            </li> -->
+                            <li>
+                                <a class="btn-a-7"  href="/delete/{{item[3]}}" role="button">Delete</a>
+                            </li>
+                        </ul>
+                    
+                    </div>
+               
+                {% endfor %}
+            </div>
+            <div id="popup" class="popup">
+                <span class="close" onclick="closePopup()">&times;</span>
+                <img class="popup-content" id="popup-img">
+            </div>
+    
+            <script>
+                function openPopup(src) {
+                    var popup = document.getElementById("popup");
+                    var popupImg = document.getElementById("popup-img");
+                    popup.style.display = "block";
+                    popupImg.src = src;
+                }
+            
+                function closePopup() {
+                    var popup = document.getElementById("popup");
+                    popup.style.display = "none";
+                }
+            </script>
+        </div>
+    
+    
+        
+    </tbody>
+    <br>
+    {{ pagination.links }}
+    <br>
+    <!-- footer -->
+    <footer>
+        <div class="thum_box">
+                
+            <div id="example" class="card" style="margin: auto;">
+                <h2>Register Keyword</h2>
+                <form action="{{url_for('main.result_post')}}" method="POST" enctype="multipart/form-data">
+                    <input type="file" name="example" accept="image/*"><input type="submit" value="upload">
+                </form>
+                <br>
+            </div>
+            <div class="card" style="margin: auto;">
+                <h2>Pic up image</h2>
+                <table>
+                    <a class="btn-a-6"  href="/result2" role="button">choose keyword</a>
+                </table>
+            </div>
+        </div>
+    </footer>
+    {% endblock %}
+    -brand" style="front-size: 2rem;">ImagePicApp</a>
+    <input type="checkbox" class="menu-btn" id="menu-btn">
+    <label for="menu-btn" class="menu-icon"><span class="navicon"></span></label>
+    <ul class="menu ml-auto">
+        <li class="top">
+          <a href="/" role="button">Gallery</a>
+        </li>
+        <li>
+          <a href="/about_index" role="button">
+              About
+          </a>
+        </li>
+        <li>
+          <a href="/result2" role="button">Key words</a>
+        </li>
+        <li>
+          <a href="#example" role="button">Register</a>
+        </li>
+        <li>
+            <a href="/logout" role="button">Logout</a>
+        </li>
+      </ul>
+</nav>
+<!-- header -->
+<header>
+    <h1 class="headline">
+      <h1>Update Keyword</h1>
+    </h1>
+</header>
+<tbody>
+    <div class="flexbox">
+        <div class="container">
+            <div class="card" style="margin: 10px; background-color: rgba(228, 236, 242, 0.2); box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.08), 0 5px 5px 0 rgba(0, 0, 0, 0.1);">
+
+                <img class="card-img" src="{{data[0][0]}}" alt="Image" onclick="openPopup('{{data[0][0]}}')">
+
+                <div class="description" style="margin: 1px;">
+                    <p></p>
+                </div>
+                <p>{{data[0][1]}}</p>
+                <p style="margin: 1px;">{{data[0][1]}}</p>
+
+                <ul style="margin: 1px;">
+                    <li>
+                        <a></a>
+                    </li>
+                    <li>
+                            <form action="/update/{{ data[0][3] }}" method="POST">
+                                <label>new keyword</label>
+                                <input type="text" name="key_word" value="{{ data[0][2] }}">
+                                <button type="submit">update</button>
+                            </form>
+                    </li>
+                    <li>
+                        <a></a>
+                    </li>
+                </ul>
+            </div>
+            
+                
+        </div>
+        <div id="popup" class="popup">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <img class="popup-content" id="popup-img">
+        </div>
+
+        <script>
+            function openPopup(src) {
+                var popup = document.getElementById("popup");
+                var popupImg = document.getElementById("popup-img");
+                popup.style.display = "block";
+                popupImg.src = src;
+            }
+        
+            function closePopup() {
+                var popup = document.getElementById("popup");
+                popup.style.display = "none";
+            }
+        </script>
+    </div>
+
+</tbody>
+<!-- footer -->
+<footer>
+    <div class="thum_box">
+            
+        <div id="example" class="card" style="margin: auto;">
+            <h2>Register Keyword</h2>
+            <form action="{{url_for('main.result_post')}}" method="POST" enctype="multipart/form-data">
+                <input type="file" name="example" accept="image/*"><input type="submit" value="upload">
+            </form>
+            <br>
+        </div>
+        <div class="card" style="margin: auto;">
+            <h2>Pic up image</h2>
+            <table>
+                <a class="btn-a-6"  href="/result2" role="button">choose keyword</a>
+            </table>
+        </div>
+    </div>
+</footer>
+{% endblock %}
