@@ -21,7 +21,7 @@ def create_app():
 
     devices = flask_devices.Devices(app)
     devices.add_pattern('mobile', 'iPhone|iPod|Android.*Mobile|Windows.*Phone|dream|blackberry|CUPCAKE|webOS|incognito|webmate', 'app/templates/mobile')
-    devices.add_pattern('tablet', 'iPad|Android', 'app/templates/tablet')
+    devices.add_pattern('tablet', 'iPad|Android', 'app/templates')
     devices.add_pattern('pc', '.*', 'app/templates')
 
     login_manager = LoginManager()
