@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block body %}
+
 <nav class="navbar navbar-light bg-light p-3">
     <a class="navbar-brand" href="/" style="front-size: 2rem;">ImagePicApp</a>
     <ul class="nav-list" style="margin: 0px;">
@@ -37,17 +38,21 @@
                     <p></p>
                 </div>
                 <p>{{data[0][1]}}</p>
-                <p style="margin: 1px;"></p>
+                <p style="margin: 1px;">{{data[0][1]}}</p>
 
                 <ul style="margin: 1px;">
                     <li>
-                        <div>
+                        <a></a>
+                    </li>
+                    <li>
                             <form action="/update/{{ data[0][3] }}" method="POST">
                                 <label>new keyword</label>
                                 <input type="text" name="key_word" value="{{ data[0][2] }}">
                                 <button type="submit">update</button>
                             </form>
-                        </div>
+                    </li>
+                    <li>
+                        <a></a>
                     </li>
                 </ul>
             </div>
