@@ -26,16 +26,27 @@
 <!-- header -->
 <header>
     <h1 class="headline">
-      <h1>Login</h1>
+      <h1>Upload file</h1>
     </h1>
 </header>
 <tbody>
-  <div class="con2">
-    <form action="{{url_for('main.result_post')}}" method="POST" enctype="multipart/form-data">
-        <input type="file" name="example" accept="image/*">
-        <input type="submit" value="upload">
-    </form>
-  </div>
+    <div class="card" style="margin: 10px; background-color: rgba(228, 236, 242, 0.2); box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.08), 0 5px 5px 0 rgba(0, 0, 0, 0.1);">
+        <form action="{{url_for('main.result_post')}}" method="POST" enctype="multipart/form-data">
+            <input type="file" name="example" accept="image/*" onchange="previewFile(this);">
+            <input type="submit" value="upload">
+        </form>
+        <img id="preview" class="card-img">
+    
+        <script>
+            function previewFile(hoge){
+                var fileData = new FileReader();
+                fileData.onload = (function() {
+                document.getElementById('preview').src = fileData.result;
+                });
+                fileData.readAsDataURL(hoge.files[0]);
+            }
+        </script>
+    </div>
 
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
@@ -47,7 +58,25 @@
         {% endif %}
     {% endwith %}
 </tbody>
-
+<!-- footer -->
+<footer>
+    <div class="thum_box">
+            
+        <div id="example" class="card" style="margin: auto;">
+            <h2>Register Keyword</h2>
+            <table>
+                <a class="btn-a-6"  href="/regi_file" role="button">choose file</a>
+            </table>
+            <br>
+        </div>
+        <div class="card" style="margin: auto;">
+            <h2>Pic image up </h2>
+            <table>
+                <a class="btn-a-6"  href="/result2" role="button">choose keyword</a>
+            </table>
+        </div>
+    </div>
+</footer>
 {% endblock %}
 
 
