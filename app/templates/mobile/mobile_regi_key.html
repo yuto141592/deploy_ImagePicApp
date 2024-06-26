@@ -53,7 +53,7 @@
                 <li>
                     <form action="{{url_for('main.result_post')}}" method="POST" enctype="multipart/form-data">
                         <input type="file" name="example" accept="image/*" onchange="previewFile(this);">
-                        <input type="submit" value="upload">
+                        <button type="submit" class="custom-button" formmethod="POST">upload</button>
                     </form>
                 </li>
                 <li>
