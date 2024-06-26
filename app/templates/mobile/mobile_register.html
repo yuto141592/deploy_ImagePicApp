@@ -33,35 +33,35 @@
 </header>
 <tbody>
     <div> 
-        <div class="container" style="margin: auto;">
+        <div class="container" style="text-align: center; margin: auto; background-color: rgba(228, 236, 242, 0.2); box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.08), 0 5px 5px 0 rgba(0, 0, 0, 0.1);">
             <form action='/register'>
                 
-                <div class="card" style="text-align: center; margin: 10px; background-color: rgba(228, 236, 242, 0.2); box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.08), 0 5px 5px 0 rgba(0, 0, 0, 0.1);">
+                <div class="card" style="margin: 10px; background-color: rgba(228, 236, 242, 0.2); box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.08), 0 5px 5px 0 rgba(0, 0, 0, 0.1); align-items: center;">
 
-                    <img class="card-img" src="{{data[0]}}" alt="Image" onclick="openPopup('{{item[0]}}')">
+                    <img class="card-img" src="{{data[0]}}" alt="Image" onclick="openPopup('{{data[0]}}')">
   
-                    <!-- <div class="description" style="margin: 1px;">
-                        <p>{{data.image_name}}</p>
+                    <div class="description" style="margin: 1px;">
+                        <p></p>
                     </div>
-                    <p>{{data.image_keyword}}</p> -->
                 
+                
+
+                    <br>
+                    <label>
+                        name    
+                        <input type="text" name="name" placeholder="image name">
+                    </label>
+                    <br>
+                    <label>
+                        key_word    
+                        <input type="text" name="key" placeholder="key1,key2,key3,...">
+                    </label>
+                
+                    <button type="submit" class="custom-button" formmethod="POST">register</button>
                 </div>
-
-                <br>
-                <label>
-                    name    
-                    <input type="text" name="item" placeholder="image name">
-                </label>
-
-                <label>
-                    key_word    
-                    <input type="text" name="item" placeholder="key1,key2,key3,...">
-                </label>
-              
-                <button type="submit" formmethod="POST">register</button>
             </form>
             <br>
-            <div class="card w-50 mb-3" style="margin: auto;">
+            <div class="card w-50 mb-3" style="margin: auto; background-color: rgba(228, 236, 242, 0.2); box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.08), 0 5px 5px 0 rgba(0, 0, 0, 0.1);">
                 <h2>Key words</h2>
                 <div class="card-body">
                     <tbody>
@@ -104,15 +104,15 @@
 <footer>
     <div class="thum_box">
             
-        <div id="example" class="card" style="margin: auto;">
-            <h2>Register Keyword</h2>
-            <form action="{{url_for('main.result_post')}}" method="POST" enctype="multipart/form-data">
-                <input type="file" name="example" accept="image/*"><input type="submit" value="upload">
-            </form>
+        <div id="example" class="card" style="width: 35%; margin: auto; padding: auto; align-items: center;">
+            <p>Register Keyword</p>
+            <table>
+                <a class="btn-a-6"  href="/regi_file" role="button">choose file</a>
+            </table>
             <br>
         </div>
-        <div class="card" style="margin: auto;">
-            <h2>Pic up image</h2>
+        <div class="card" style="width: 35%; margin: auto; padding: auto; align-items: center;">
+            <p>Pic image up </p>
             <table>
                 <a class="btn-a-6"  href="/result2" role="button">choose keyword</a>
             </table>

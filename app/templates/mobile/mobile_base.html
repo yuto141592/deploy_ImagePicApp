@@ -409,7 +409,9 @@
 
         li {
             list-style: none;
-            margin: 2px;
+            margin-top: 2px;
+            margin-right: 25px;
+            margin-left: 25px;
         }
 
         body {
@@ -454,12 +456,34 @@
             color: #fff;
         }
 
+        .button-container {
+            display: flex;
+            height: 50px;
+            justify-content: center;
+            align-items: center;
+            gap: 10px; /* ボタン間のスペース */
+        }
+
+        .custom-button {
+            width: 80px;
+            height: 25px;
+            margin: 5px;
+            font-size: 12px; 
+            background-color: #007bff; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer;
+        }
+        .custom-button:hover {
+            background-color: #0056b3; 
+        }
+
         .btn-a-6{
             display: block;
             text-decoration: none;
             max-width: 300px;
             width: 100%;
-            margin: 10px;
             padding: 8px 15px;
             color: #608aac;
             font-weight: bold;

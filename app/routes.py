@@ -19,17 +19,20 @@ import flask_devices
 
 main = Blueprint('main', __name__)
 
-firebase_sdk_str = os.getenv('FIRE_BASE_SDK')
-firebase_sdk = json.loads(firebase_sdk_str)
-firebase = pyrebase.initialize_app(firebase_sdk)
+
+with open("fireBaseSDK.json") as f:
+    firebaseConfig = json.loads(f.read())
+firebase = pyrebase.initialize_app(firebaseConfig)
 
 
-firebase_config_str = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
+
+firebase_config_str = open("serviceAccountKey.json").read()
 firebase_config = json.loads(firebase_config_str)
 cred = credentials.Certificate(firebase_config)
 firebase_admin.initialize_app(cred, {
     'storageBucket': 'imagepicapp.appspot.com'
 })
+
 
 aut = firebase.auth()
 
@@ -185,9 +188,9 @@ def register():
     data2 = data[0].image_path
     data2_ = str(data2)
    
-    get_item = request.form.getlist("item")
-    new_name = str(get_item[0])
-    new_key = str(get_item[1])
+    # get_item = request.form.getlist("item")
+    new_name = request.form.get("name")
+    new_key = request.form.get("key")
 
     delImg = Images.query.filter(Images.user_id==session['user']).filter(Images.image_keyword.like('%_?/keyword/?_%')).first()
     db.session.delete(delImg)
