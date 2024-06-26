@@ -26,15 +26,26 @@
 <!-- header -->
 <header>
     <h1 class="headline">
-      <h1>Login</h1>
+      <h1>Upload file</h1>
     </h1>
 </header>
 <tbody>
   <div class="con2">
     <form action="{{url_for('main.result_post')}}" method="POST" enctype="multipart/form-data">
-        <input type="file" name="example" accept="image/*">
+        <input type="file" name="example" accept="image/*" onchange="previewFile(this);">
         <input type="submit" value="upload">
     </form>
+    <img id="preview" class="card-img">
+ 
+    <script>
+    function previewFile(hoge){
+        var fileData = new FileReader();
+        fileData.onload = (function() {
+        document.getElementById('preview').src = fileData.result;
+        });
+        fileData.readAsDataURL(hoge.files[0]);
+    }
+    </script>
   </div>
 
     {% with messages = get_flashed_messages(with_categories=true) %}
