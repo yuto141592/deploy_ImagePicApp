@@ -19,20 +19,17 @@ import flask_devices
 
 main = Blueprint('main', __name__)
 
-
-with open("fireBaseSDK.json") as f:
-    firebaseConfig = json.loads(f.read())
-firebase = pyrebase.initialize_app(firebaseConfig)
-
+firebase_sdk_str = os.getenv('FIRE_BASE_SDK')
+firebase_sdk = json.loads(firebase_sdk_str)
+firebase = pyrebase.initialize_app(firebase_sdk)
 
 
-firebase_config_str = open("serviceAccountKey.json").read()
+firebase_config_str = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
 firebase_config = json.loads(firebase_config_str)
 cred = credentials.Certificate(firebase_config)
 firebase_admin.initialize_app(cred, {
     'storageBucket': 'imagepicapp.appspot.com'
 })
-
 
 aut = firebase.auth()
 
