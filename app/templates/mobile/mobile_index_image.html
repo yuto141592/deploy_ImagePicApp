@@ -36,7 +36,7 @@
     <div class="card w-80 mb-3" style="margin: auto; background-color: rgba(228, 236, 242, 0.2); box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.08), 0 5px 5px 0 rgba(0, 0, 0, 0.1);">
         <div class="card-body">
             <tbody>
-                <ol class="list">
+                <ol class="list2">
                     {% for item in list %}
                     <li>
                         <input type="checkbox"  name="check" value="{{item}}">
@@ -47,7 +47,9 @@
                 
             </tbody>    
             <br>
-            <button type="submit" class="custom-button" formmethod="POST">GO</button>
+            <div class="button-container2">
+                <button type="submit" class="custom-button" formmethod="POST">GO</button>
+            </div>
             <br>
 
         </div>
