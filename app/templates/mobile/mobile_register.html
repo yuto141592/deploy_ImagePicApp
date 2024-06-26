@@ -32,7 +32,7 @@
     </h1>
 </header>
 <tbody>
-    <div> 
+    <div class="flexbox"> 
         <div class="container" style="text-align: center; margin: auto; background-color: rgba(228, 236, 242, 0.2); box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.08), 0 5px 5px 0 rgba(0, 0, 0, 0.1);">
             <form action='/register'>
                 
@@ -61,10 +61,10 @@
                 </div>
             </form>
             <br>
-            <div class="card w-50 mb-3" style="margin: auto; background-color: rgba(228, 236, 242, 0.2); box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.08), 0 5px 5px 0 rgba(0, 0, 0, 0.1);">
-                <h2>Key words</h2>
-                <!-- <div class="card-body">
-                    <tbody> -->
+            <div class="card container_reg card_reg" style="margin: auto; background-color: rgba(228, 236, 242, 0.2); box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.08), 0 5px 5px 0 rgba(0, 0, 0, 0.1);">
+                <h4>Key words</h4>
+                
+                    <tbody>
                         <ol class="list2">
                             {% for item in list %}
                             <li>
@@ -73,9 +73,9 @@
                             {% endfor %}
                         </ol>
                         
-                    <!-- </tbody>    
+                    </tbody>    
 
-                </div> -->
+              
             </div>
            
         </div>
