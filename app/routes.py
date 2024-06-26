@@ -416,7 +416,7 @@ def about():
         return render_template('about_index.html')
     
 @main.route("/regi_file")
-def about():
+def regi_file():
     if request.DEVICE == 'mobile':
         return render_template('mobile_regi_key.html')
     elif request.DEVICE == 'tablet':
