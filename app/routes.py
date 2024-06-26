@@ -414,6 +414,15 @@ def about():
         return render_template('tablet_about_index.html')
     else:
         return render_template('about_index.html')
+    
+@main.route("/regi_file")
+def about():
+    if request.DEVICE == 'mobile':
+        return render_template('mobile_regi_key.html')
+    elif request.DEVICE == 'tablet':
+        return render_template('tablet_regi_key.html')
+    else:
+        return render_template('regi_key.html')
 
 @main.route('/signup', methods=['GET', 'POST'])
 def signup():
