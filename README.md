@@ -15,9 +15,9 @@ ImagePicAppの説明がされているページです。
 https://yuto141592.github.io/about_ImagePicApp/
 <p></p>
 <br>
-<!-- kabegamiディレクトリ内の画像は自身の創作物になりますので著作権上の問題はございません。
+画像は自身の創作物になりますので著作権上の問題はございません。
 <p></p>
-<br> -->
+<br>
 
 # スマートフォンなどでアクセスした場合
 <div style="display: flex; justify-content:center;">
