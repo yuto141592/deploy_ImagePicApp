@@ -18,4 +18,12 @@ https://yuto141592.github.io/about_ImagePicApp/
 <!-- kabegamiディレクトリ内の画像は自身の創作物になりますので著作権上の問題はございません。
 <p></p>
 <br> -->
-
+## スマートフォンなどでアクセスした場合
+<div style="display: flex; justify-content:center;">
+    <img src="UI/画像1.jpg" width="300">
+    <img src="UI/画像2.jpg" width="300">
+</div>
+<div style="display: flex; justify-content:center;">
+    <img src="UI/画像3.jpg" width="300">
+    <img src="UI/画像4.jpg" width="300">
+</div>
