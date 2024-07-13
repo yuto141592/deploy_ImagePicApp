@@ -24,6 +24,6 @@ https://yuto141592.github.io/about_ImagePicApp/
     <img src="UI/画像2.jpg" width="300">
 </div>
 <div style="display: flex; justify-content:center;">
-    <img src="UI/画像3.jpg" width="300">
-    <img src="UI/画像4.jpg" width="300">
+    <img src="UI/画像5.jpg" width="300">
+    <img src="UI/画像6.jpg" width="300">
 </div>
