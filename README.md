@@ -28,11 +28,13 @@ https://yuto141592.github.io/about_ImagePicApp/
     <img src="UI/画像7.jpg" width="300">
     <img src="UI/画像8.jpg" width="300">
 </div>
+
+# PCなどでアクセスした場合
 <div style="display: flex; justify-content:center;">
-    <img src="UI/画像9.png" width="300">
-    <img src="UI/画像10.png" width="300">
-    <img src="UI/画像11.png" width="300">
-    <img src="UI/画像12.png" width="300">
-    <img src="UI/画像13.png" width="300">
-    <img src="UI/画像14.png" width="300">
+    <img src="UI/画像9.png" width="600">
+    <img src="UI/画像10.png" width="600">
+    <img src="UI/画像11.png" width="600">
+    <img src="UI/画像12.png" width="600">
+    <img src="UI/画像13.png" width="600">
+    <img src="UI/画像14.png" width="600">
 </div>
