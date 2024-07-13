@@ -21,12 +21,18 @@ https://yuto141592.github.io/about_ImagePicApp/
 
 # スマートフォンなどでアクセスした場合
 <div style="display: flex; justify-content:center;">
-    <p>ログイン画面</p>
     <img src="UI/画像1.jpg" width="300">
-    <p>ハンバーガーメニュー</p>
     <img src="UI/画像2.jpg" width="300">
-</div>
-<div style="display: flex; justify-content:center;">
     <img src="UI/画像5.jpg" width="300">
     <img src="UI/画像6.jpg" width="300">
+    <img src="UI/画像7.jpg" width="300">
+    <img src="UI/画像8.jpg" width="300">
+</div>
+<div style="display: flex; justify-content:center;">
+    <img src="UI/画像9.jpg" width="300">
+    <img src="UI/画像10.jpg" width="300">
+    <img src="UI/画像11.jpg" width="300">
+    <img src="UI/画像12.jpg" width="300">
+    <img src="UI/画像13.jpg" width="300">
+    <img src="UI/画像14.jpg" width="300">
 </div>
