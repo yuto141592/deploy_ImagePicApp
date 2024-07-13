@@ -21,6 +21,7 @@ https://yuto141592.github.io/about_ImagePicApp/
 
 # スマートフォンなどでアクセスした場合
 <div style="display: flex; justify-content:center;">
+    <p>ログイン画面</p>
     <img src="UI/画像1.jpg" width="300">
     <img src="UI/画像2.jpg" width="300">
     <img src="UI/画像5.jpg" width="300">
