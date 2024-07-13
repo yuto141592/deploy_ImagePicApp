@@ -18,4 +18,4 @@ https://yuto141592.github.io/about_ImagePicApp/
 <!-- kabegamiディレクトリ内の画像は自身の創作物になりますので著作権上の問題はございません。
 <p></p>
 <br> -->
-![image](https://github.com/user-attachments/assets/7bba0ef1-c504-40da-a9b4-d28c813ad719)
+![画像1](https://github.com/user-attachments/assets/b40eab88-f77e-4dbc-8f89-f714e07a36ef)
