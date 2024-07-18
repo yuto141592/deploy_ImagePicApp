@@ -52,7 +52,7 @@ PythonのフレームワークFlaskを用いて、イラスト作成者向けに
 <div style="display: flex; justify-content:center;">
     <img src="UI/画像9.png" width="600">
     <img src="UI/画像10.png" width="600">
-    <img src="UI/画像11.png" width="600">
+    <img src="UI/画像16.png" width="600">
     <img src="UI/画像12.png" width="600">
     <img src="UI/画像13.png" width="600">
     <img src="UI/画像14.png" width="600">
