@@ -12,8 +12,6 @@ signupからメールアドレス（架空で構いません）とパスワー�
 <br> -->
 ImagePicAppの説明がされているページです。
 <br>
-UIが変更されていますが基本的な機能は同じです。
-<br>
 https://yuto141592.github.io/about_ImagePicApp/
 <p></p>
 <br>
