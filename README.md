@@ -4,7 +4,7 @@ https://imagepicapp.onrender.com
 <br>
 接続に時間がかかることがあります。
 signupからメールアドレス（架空で構いません）とパスワード（半角英数6字以上）を登録してログインをお願いいたします。
-詳細な使い方はaboutをご参照ください。
+詳細な使い方は下記URLをご参照ください。
 <p></p>
 <br>
 <!-- VSCodeで実行する場合はお手数ですが、[<>Code ▼ → Download ZIP] よりZIPファイルをダウンロードしていただき、VSCodeで File>Open Folder... からImagePicApp-mainを開いてImagePicApp.pyファイルの実行をお願いいたします。'http://localhost:5000/' のリンクに飛ぶとImagePicAppをご利用いただけます。
